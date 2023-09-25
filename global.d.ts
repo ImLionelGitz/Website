@@ -18,5 +18,22 @@ interface LInput {
     alt_text?: boolean
     width?: number
     height?: number
-    oncheck?: (e: any) => void
+    onchange?: (e: any) => void
+}
+
+interface GCard {
+    icon: string
+    title: string
+    id: string
+    classes?: string
+}
+
+interface LDropdown {
+    label: string
+    msg: string
+    options: string[]
+}
+
+interface LMain {
+    children: any
 }

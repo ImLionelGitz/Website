@@ -5,25 +5,8 @@
 $BtnThemeIdle: #16a34a;
 $BtnThemeClick: #047857;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  box-sizing: border-box;
 }
 
 .RadioBox {
@@ -176,20 +159,116 @@ body {
   &::-webkit-scrollbar {
     width: 8px;
   }
-  
+
   /* Track */
   &::-webkit-scrollbar-track {
     background: none;
   }
-  
+
   /* Handle */
   &::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 4px;
   }
-  
+
   /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover {
     background: #555;
-  } 
+  }
+}
+
+.GSlot {
+  position: relative;
+  width: 250px;
+  height: 345px;
+  overflow: hidden;
+  background: $BtnThemeClick;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+
+  img {
+    transition: .2s linear;
+  }
+
+  h3 {
+    position: absolute;
+    transition: .1s ease;
+    background: linear-gradient(360deg, black, transparent);
+    color: white;
+    font-size: 20px;
+    height: 0;
+    width: inherit;
+  }
+
+  &:hover {
+    img {
+      transform: scale(1.05);
+    }
+
+    h3 {
+      height: 77px;
+    }
+  }
+}
+
+.Dropdown {
+  position: relative;
+  display: inline-block;
+  margin: 90px;
+  width: 17%;
+
+  .button {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    cursor: pointer;
+
+    .viewer {
+      color: black;
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      border: 2px solid;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    span {
+      position: absolute;
+      padding: 6px;
+    }
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    position: absolute;
+    overflow-x: hidden;
+    height: 0;
+    max-height: 144px;
+    background-color: #f9f9f9;
+    transition: .2s linear;
+    margin-top: 4px;
+
+    button {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+
+      &:hover {
+        background: #888;
+      }
+    }
+  }
+
+  label {
+    position: absolute;
+    left: 0.8rem;
+    top: -0.7rem;
+    background: white;
+    padding: 0 2px;
+  }
 }
