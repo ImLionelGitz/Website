@@ -5,6 +5,7 @@ import { useRef } from 'react'
  * @param label A label for this dropdown (displayed on top left) 
  * @param msg A message shown on this dropdown (e.g. **Pick A Game**)
  * @param options Options of this dropdown's menu
+ * @emits CustomEvent called `option_picked` with an ID
  */
 
 export default function Dropdown({ label, msg, options }: LDropdown) {
@@ -42,6 +43,12 @@ export default function Dropdown({ label, msg, options }: LDropdown) {
         dispatchEvent(optionEvent)
     }
 
+    function OnOutsideClick() {
+        if (DrpdnOpen) OnDropdownClick()
+    }
+
+    addEventListener('clicked_outside', OnOutsideClick)
+
     return (
         <div className="Dropdown">
             <div className="button" onClick={OnDropdownClick}>
@@ -49,7 +56,7 @@ export default function Dropdown({ label, msg, options }: LDropdown) {
                 <span ref={caret}>▼</span>
             </div>
             <div ref={container} className="container">
-                <button style={{pointerEvents: 'none'}}>{msg}</button>
+                <button style={{pointerEvents: 'none'}} className=' text-gray-500 border-b-2 mx-3 border-gray-400'>{msg}</button>
                 {
                     options.map((option, index) => <button onClick={OnMenuClick}
                     key={index} id={option.toLowerCase().split(' ').join('_')}>{option}</button>)

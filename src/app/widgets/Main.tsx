@@ -1,5 +1,10 @@
 import { useRef, useEffect } from 'react'
 
+/**
+ * Creates a main holder for a page
+ * @emits CustomEvent called `clicked_outside`
+ */
+
 function ClickedOutside(ref: any) {
     useEffect(() => {
         function handleClick(event: MouseEvent) {

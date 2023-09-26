@@ -8,7 +8,7 @@ interface Lbutton {
     children: any
     bg?: boolean
     href?: string
-    extra_styles?: string
+    className?: string
     onclick?: () => void
 }
 
@@ -25,7 +25,7 @@ interface GCard {
     icon: string
     title: string
     id: string
-    classes?: string
+    className?: string
 }
 
 interface LDropdown {
@@ -36,4 +36,11 @@ interface LDropdown {
 
 interface LMain {
     children: any
+}
+
+interface VCard {
+    icon: string
+    title: string
+    url: string
+    className?: string
 }

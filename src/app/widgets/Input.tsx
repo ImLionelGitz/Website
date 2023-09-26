@@ -4,7 +4,8 @@
  * @param alt_text Use the second version of text input (**Only works if the input type is text!**)
  * @param width Width of the text input (default 100)
  * @param height Height of the text input (default 20)
- * @param onchange A callback if text change is detected
+ * @param onchange A callback if text change is detected (**text input only!**)
+ * @emits CustomEvent called `on_check` with a `source` and a `value`
  */
 
 export default function Input({ children, type, alt_text, width, height, onchange }: LInput) {
