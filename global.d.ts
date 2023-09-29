@@ -9,16 +9,17 @@ interface Lbutton {
     bg?: boolean
     href?: string
     className?: string
-    onclick?: () => void
+    onclick?: (e: any) => void
 }
 
 interface LInput {
-    children: string
+    children: any
     type?: keyof InputTypes
     alt_text?: boolean
     width?: number
     height?: number
     onchange?: (e: any) => void
+    className?: string
 }
 
 interface GCard {

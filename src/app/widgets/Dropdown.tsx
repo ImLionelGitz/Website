@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { DOWN_SYMBOL, UP_SYMBOL } from '../helpers/variables'
 
 /**
  * Create a dropdown.
@@ -22,13 +23,13 @@ export default function Dropdown({ label, msg, options }: LDropdown) {
         if (!DrpdnOpen) {
             const absHT = btnHt * elem.children.length + 'px'
             elem.style.height = absHT
-            elem2.innerText = '▲'
+            elem2.innerText = UP_SYMBOL
             DrpdnOpen = true
         }
 
         else {
             elem.style.removeProperty('height')
-            elem2.innerText = '▼'
+            elem2.innerText = DOWN_SYMBOL
             DrpdnOpen = false
         }
     }
@@ -40,20 +41,22 @@ export default function Dropdown({ label, msg, options }: LDropdown) {
 
         elem.innerText = btn.innerText
         OnDropdownClick()
-        dispatchEvent(optionEvent)
+        window.dispatchEvent(optionEvent)
     }
 
     function OnOutsideClick() {
         if (DrpdnOpen) OnDropdownClick()
     }
 
-    addEventListener('clicked_outside', OnOutsideClick)
+    if (typeof window !== 'undefined') {
+        window.addEventListener('clicked_outside', OnOutsideClick)
+    }
 
     return (
         <div className="Dropdown">
             <div className="button" onClick={OnDropdownClick}>
                 <div className="viewer" ref={viewer}>{msg}</div>
-                <span ref={caret}>▼</span>
+                <span ref={caret}>{DOWN_SYMBOL}</span>
             </div>
             <div ref={container} className="container">
                 <button style={{pointerEvents: 'none'}} className=' text-gray-500 border-b-2 mx-3 border-gray-400'>{msg}</button>

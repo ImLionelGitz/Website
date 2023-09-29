@@ -9,7 +9,7 @@ import Image from "next/image";
  */
 
 export default function VCard({ icon, title, url, className }: VCard) {
-    const _class = (className) ? className : ''
+    const _class = (className) ? ` ${className}` : ''
 
     return (
         <a href={url} className='VCard'>

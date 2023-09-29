@@ -10,11 +10,11 @@ import Image from "next/image";
  */
 
 export default function GSlot({ icon, title, id, className }: GCard) {
-    const _class = (className) ? className : ''
+    const _class = (className) ? ` ${className}` : ''
 
     function OnSlotClick() {
         const gslot = new CustomEvent('game_slot_clicked', { detail: { gameTitle: title, gameID: id } })
-        dispatchEvent(gslot)
+        window.dispatchEvent(gslot)
     }
 
     return (

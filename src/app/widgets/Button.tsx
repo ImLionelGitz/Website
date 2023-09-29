@@ -8,7 +8,7 @@
 
 export default function Button({ children, bg, href, className, onclick }: Lbutton) {
     const bgType = (bg) ? 'ButtonWithBG' : 'ButtonWithoutBG'
-    const extraClasses = (className) ? className : ''
+    const extraClasses = (className) ? ` ${className}` : ''
 
     return (
         <>{

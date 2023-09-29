@@ -8,12 +8,14 @@
  * @emits CustomEvent called `on_check` with a `source` and a `value`
  */
 
-export default function Input({ children, type, alt_text, width, height, onchange }: LInput) {
+export default function Input({ children, type, alt_text, width, height, onchange, className }: LInput) {
     function onCheck(e: any) {
         const value = e.target as HTMLInputElement
         const checkFire = new CustomEvent('on_check', { detail: { source: children, value: value.checked } })
-        dispatchEvent(checkFire)
+        window.dispatchEvent(checkFire)
     }
+
+    const _class = (className) ? ` ${className}` : ''
 
     if (type == 'CHECKBOX' || type == 'RADIO' || type == 'TOGGLE') {
         const chosenInpType = type.toLowerCase()
@@ -24,7 +26,7 @@ export default function Input({ children, type, alt_text, width, height, onchang
         const toggleInnerContent = (type == 'TOGGLE') ? children : ''
 
         return (
-            <label className={inpStyle}>
+            <label className={inpStyle + _class}>
                 {inpLabel}
                 <input type={inpType} onClick={onCheck} />
                 <span className={chosenInpType}>{toggleInnerContent}</span>
@@ -37,12 +39,12 @@ export default function Input({ children, type, alt_text, width, height, onchang
     const altInput = "border-2 p-2 outline-none rounded border-white bg-transparent"
 
     if (alt_text) return (
-        <input className={altInput} type="text" placeholder={children}
+        <input className={altInput + _class} type="text" placeholder={children}
             style={{ width: absWidth + 'px', height: absHeight + 'px' }} onChange={onchange} />
     )
 
     return (
-        <textarea className="TextInput" placeholder={children}
+        <textarea className={"TextInput" + _class} placeholder={children}
             cols={30} rows={10} style={{ width: absWidth + 'px', height: absHeight + 'px' }}></textarea>
     )
 }

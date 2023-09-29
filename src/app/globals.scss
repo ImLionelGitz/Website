@@ -9,6 +9,20 @@ body {
   box-sizing: border-box;
 }
 
+.active {
+  ::after {
+    border: 14px solid transparent;
+    border-top-color: #047857;
+    content: " ";
+    right: 10%;
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+  }
+}
+
+// Viatial components
+
 .ButtonWithBG {
   background: $BtnThemeIdle;
   color: white;
@@ -18,7 +32,6 @@ body {
 }
 
 .ButtonWithoutBG {
-  color: white;
   transition: 0.2s ease-in;
 }
 
@@ -133,9 +146,9 @@ body {
 
 .ToggleBox {
   display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
+  position: absolute;
+  top: 0;
+  right: 0;
   cursor: pointer;
   font-size: 22px;
   user-select: none;
@@ -149,16 +162,11 @@ body {
   }
 
   .toggle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 4px;
-    background-color: #eee;
-    border-radius: 4px;
+    color: #eee;
   }
 
   input:checked~.toggle {
-    background-color: $BtnThemeIdle;
+    color: black;
   }
 }
 
@@ -326,4 +334,72 @@ body {
   &:hover {
     color: $BtnThemeClick;
   }
+}
+
+// Ui components
+
+.Navigation {
+  background: #047857;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  li:not(.hidden) {
+    display: inline;
+    position: relative;
+
+    &:not(:nth-child(2)):before {
+      content: "|";
+      margin: 0 15px;
+      font-size: 20px;
+      color: #eee;
+    }
+  }
+}
+
+.Footer {
+  text-align: center;
+  background: #047857;
+  padding: 8px;
+  font-size: 20px;
+}
+
+// Mobile only mode
+
+@media only screen and (max-width: 480px) {
+  .active {
+    ::after {
+      display: none;
+    }
+
+    color: #10b981;
+  }
+
+  .highten {
+    height: 11rem;
+  }
+
+  .Navigation {
+    
+    ul {
+      display: grid;
+      justify-items: center;
+      transition: .2s cubic-bezier(0, 0.22, 0.41, 1);
+
+      .hidden {
+        display: block;
+      }
+
+      li {
+        margin: 4px;
+
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+
+
 }

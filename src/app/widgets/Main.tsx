@@ -10,7 +10,7 @@ function ClickedOutside(ref: any) {
         function handleClick(event: MouseEvent) {
             if (ref.current && event.target == ref.current) {
                 const clickEvent = new CustomEvent('clicked_outside')
-                dispatchEvent(clickEvent)
+                window.dispatchEvent(clickEvent)
             }
         }
 
