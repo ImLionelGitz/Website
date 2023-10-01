@@ -1,12 +1,16 @@
 'use client'
 
-import Input from "./ui/FooterBar"
 import Main from "./widgets/Main"
+import NavBar from "./ui/NavBar"
+import Picture from "./ui/Picture"
+import Footer from "./ui/FooterBar"
 
 export default function Home() {
   return (
     <Main>
-      <Input />
+      <NavBar />
+      <Picture />
+      <Footer />
     </Main>
   )
 }

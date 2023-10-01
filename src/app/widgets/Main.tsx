@@ -1,32 +1,21 @@
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
 
 /**
  * Creates a main holder for a page
  * @emits CustomEvent called `clicked_outside`
  */
 
-function ClickedOutside(ref: any) {
-    useEffect(() => {
-        function handleClick(event: MouseEvent) {
-            if (ref.current && event.target == ref.current) {
-                const clickEvent = new CustomEvent('clicked_outside')
-                window.dispatchEvent(clickEvent)
-            }
-        }
-
-        document.addEventListener('mousedown', handleClick)
-
-        return () => {
-            document.removeEventListener('mousedown', handleClick)
-        }
-    }, [ref])
-}
-
 export default function Main({ children }: LMain) {
-    const main = useRef(null)
-    ClickedOutside(main)
+    const main = useRef<HTMLDivElement>(null)
+
+    function handleClick(event: any) {
+        if (main.current && event.target == main.current) {
+            const clickEvent = new CustomEvent('clicked_outside')
+            window.dispatchEvent(clickEvent)
+        }
+    }
 
     return (
-        <div ref={main}>{children}</div>
+        <div ref={main} onClick={handleClick}>{children}</div>
     )
 }

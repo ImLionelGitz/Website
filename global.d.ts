@@ -25,7 +25,8 @@ interface LInput {
 interface GCard {
     icon: string
     title: string
-    id: string
+    platforms: Array<{ platform: string, logo: string }>
+    links: string[]
     className?: string
 }
 
@@ -42,6 +43,12 @@ interface LMain {
 interface VCard {
     icon: string
     title: string
+    url: string
+    className?: string
+}
+
+interface PFOCard {
+    icon: string
     url: string
     className?: string
 }
