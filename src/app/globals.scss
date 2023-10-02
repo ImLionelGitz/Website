@@ -5,16 +5,33 @@
 $BtnThemeIdle: #16a34a;
 $BtnThemeClick: #047857;
 
+.LightMode {
+  --higher-color: #047857;
+  --lower-color: #eee;
+  --text-color: #000;
+  --shadow-color: gray;
+}
+
+.DarkMode {
+  --higher-color: #282828;
+  --lower-color: #323232;
+  --text-color: #f9f9f9;
+  --shadow-color: black;
+}
+
 body {
   box-sizing: border-box;
+  background: var(--lower-color);
+  color: var(--text-color);
+  transition: .2s ease;
 }
 
 .active {
-  ::after {
+  &::after {
     border: 14px solid transparent;
     border-top-color: #047857;
     content: " ";
-    right: 10%;
+    right: 21%;
     pointer-events: none;
     position: absolute;
     top: 100%;
@@ -171,11 +188,11 @@ body {
   }
 
   .toggle {
-    color: #eee;
+    color: yellow;
   }
 
   input:checked~.toggle {
-    color: black;
+    color: #eee;
   }
 }
 
@@ -217,7 +234,7 @@ body {
   display: flex;
   align-items: flex-end;
   justify-content: space-around;
-  box-shadow: 5px 3px 20px gray;
+  box-shadow: 5px 3px 20px var(--shadow-color);
 
   img {
     transition: .2s linear;
@@ -281,7 +298,7 @@ body {
     height: 0;
     max-height: 144px;
     background-color: #f9f9f9;
-    box-shadow: 2px 1px 10px 0px gray;
+    box-shadow: 2px 1px 10px 0px var(--shadow-color);
     transition: 0.2s cubic-bezier(0, 0.22, 0.41, 1);
     margin-top: 4px;
 
@@ -352,7 +369,7 @@ body {
   position: relative;
   transition: 0.2s ease-in;
   border-radius: 8px;
-  box-shadow: 5px 3px 20px gray;
+  box-shadow: 5px 3px 20px var(--shadow-color);
 
   img {
     transition: 0.2s linear;
@@ -378,7 +395,7 @@ body {
 // Ui components
 
 .Navigation {
-  background: #047857;
+  background: var(--higher-color);
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -399,7 +416,7 @@ body {
 
 .Footer {
   text-align: center;
-  background: #047857;
+  background: var(--higher-color);
   padding: 8px;
   font-size: 20px;
 }
@@ -419,13 +436,18 @@ body {
   .content {
     position: absolute;
     transition: .2s ease;
-    background: white;
+    background: var(--lower-color);
+    color: var(--text-color);
     overflow: hidden;
     text-align: center;
     transform: translateX(-999px);
     border-radius: 4px;
+
+    h1 {
+      border-bottom: 2px solid var(--text-color);
+    }
   }
-  
+
   .closeBtn {
     position: absolute;
     top: 0;
@@ -443,7 +465,7 @@ body {
   align-items: center;
   cursor: pointer;
   overflow: hidden;
-  
+
   div {
     background: linear-gradient(90deg, rgba(0, 0, 0, 42%), transparent);
     height: 100%;
@@ -487,15 +509,16 @@ body {
       ::after {
         display: none;
       }
-  
+
       color: #10b981;
     }
-  
+
     .highten {
       height: 11rem;
     }
-    
+
     ul {
+      overflow: hidden;
       display: grid;
       justify-items: center;
       transition: .2s cubic-bezier(0, 0.22, 0.41, 1);
@@ -508,6 +531,10 @@ body {
         margin: 4px;
 
         &::before {
+          display: none;
+        }
+
+        &::after {
           display: none;
         }
       }

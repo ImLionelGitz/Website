@@ -10,11 +10,6 @@ export default function Button({ children, bg, href, className, onclick }: Lbutt
     const bgType = (bg) ? 'ButtonWithBG' : 'ButtonWithoutBG'
     const extraClasses = (className) ? ` ${className}` : ''
 
-    return (
-        <>{
-            (typeof href == 'string') ?
-            <a className={bgType + extraClasses} href={href}>{children}</a> :
-            <button className={bgType + extraClasses} onClick={onclick}>{children}</button> 
-        }</>
-    )
+    if (typeof href == 'string') return (<a className={bgType + extraClasses} href={href}>{children}</a>)
+    else return (<button className={bgType + extraClasses} onClick={onclick}>{children}</button>)
 }

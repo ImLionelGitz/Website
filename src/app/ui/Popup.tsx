@@ -46,7 +46,7 @@ export default function Popup() {
     return (
         <div className="Popup HideBG" ref={PopupUI} onClick={OutClick}>
             <div ref={ContentHolder} className="content">
-                <h1 className='p-3 border-b-2 border-black mx-12'>
+                <h1 className='p-3 mx-12'>
                     Select a Platform
                 </h1>
 

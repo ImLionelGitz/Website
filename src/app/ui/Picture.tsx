@@ -19,7 +19,7 @@ export default function Picture() {
                 Check Out My Latest Video!
             </h1>
             <div></div>
-            <Image alt="Header" src='/lol.webp' width={1280} height={720} />
+            <Image alt="Header" src='/lol.webp' width={1280} height={720} style={{ width: '100%' }} />
         </div>
     )
 }

@@ -37,7 +37,8 @@ interface LDropdown {
 }
 
 interface LMain {
-    children: any
+    children: any,
+    className?: string
 }
 
 interface VCard {

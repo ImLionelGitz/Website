@@ -15,7 +15,7 @@ export default function NavBar() {
     function DropdownClick(e: any) {
         if (MenuBtnHolder.current) {
             const btn = e.target as HTMLButtonElement,
-            Dropdown = MenuBtnHolder.current
+                Dropdown = MenuBtnHolder.current
 
             if (!DropdownOpen) {
                 btn.innerText = UP_SYMBOL
@@ -33,6 +33,23 @@ export default function NavBar() {
 
     if (typeof window !== 'undefined') {
         pageOpened = window.location.pathname.split('/').slice(1)[0]
+
+        addEventListener('on_check', (e) => {
+            const event = e as CustomEvent,
+                data = event.detail as { source: any, value: boolean }
+
+            if (typeof data.source !== 'string') {
+                const root = document.body
+
+                if (data.value) {
+                    root.classList.replace('LightMode', 'DarkMode')
+                }
+
+                else {
+                    root.classList.replace('DarkMode', 'LightMode')
+                }
+            }
+        })
     }
 
     return (
@@ -41,7 +58,7 @@ export default function NavBar() {
                 <Image alt="logo" src='/logo.png' width={200} height={200} />
             </a>
 
-            <ul ref={MenuBtnHolder} className='uppercase mt-4 h-7 overflow-hidden'>
+            <ul ref={MenuBtnHolder} className='uppercase mt-4 h-7'>
                 <li className='hidden'>
                     <NavButton onclick={DropdownClick} className='text-white'>{DOWN_SYMBOL}</NavButton>
                 </li>
