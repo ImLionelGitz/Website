@@ -7,7 +7,6 @@ import { useRef } from 'react'
 
 export default function Main({ children, className }: LMain) {
     const main = useRef<HTMLDivElement>(null)
-    const _class = (className) ? ` ${className}` : ''
 
     function handleClick(event: any) {
         if (main.current && event.target == main.current) {
@@ -17,6 +16,6 @@ export default function Main({ children, className }: LMain) {
     }
 
     return (
-        <div ref={main} className={_class} onClick={handleClick}>{children}</div>
+        <div ref={main} className={className} onClick={handleClick}>{children}</div>
     )
 }

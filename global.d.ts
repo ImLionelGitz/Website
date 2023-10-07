@@ -53,3 +53,15 @@ interface PFOCard {
     url: string
     className?: string
 }
+
+interface LHeader {
+    ytThumb?: boolean
+    imgPath: string
+    className?: string
+}
+
+interface Popup {
+    settingMode?: boolean
+    settingOptions?: JSX.Element[]
+    className?: string
+}

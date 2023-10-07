@@ -8,10 +8,8 @@ import Image from "next/image";
  */
 
 export default function PortfolioCard({ icon, url, className }: PFOCard) {
-    const _class = (className) ? ` ${className}` : ''
-
     return (
-        <a href={url} className='PFOCard'>
+        <a href={url} className={'PFOCard' + ' ' + className}>
             <Image alt='Portfolio' src={icon} width={345} height={245} />
             <div className="Shadow"></div>
         </a>

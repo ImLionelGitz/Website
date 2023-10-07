@@ -10,6 +10,7 @@ $BtnThemeClick: #047857;
   --lower-color: #eee;
   --text-color: #000;
   --shadow-color: gray;
+  --btn-hover-color: #dedbdb;
 }
 
 .DarkMode {
@@ -17,6 +18,11 @@ $BtnThemeClick: #047857;
   --lower-color: #323232;
   --text-color: #f9f9f9;
   --shadow-color: black;
+  --btn-hover-color: #636363;
+}
+
+:root {
+  --arrow-position: 50%;
 }
 
 body {
@@ -29,12 +35,22 @@ body {
 .active {
   &::after {
     border: 14px solid transparent;
-    border-top-color: #047857;
+    border-top-color: var(--higher-color);
     content: " ";
-    right: 21%;
+    left: var(--arrow-position);
     pointer-events: none;
     position: absolute;
     top: 100%;
+  }
+}
+
+.headerEng {
+  cursor: pointer;
+
+  &:hover {
+    img {
+      transform: scale(1.05);
+    }
   }
 }
 
@@ -265,51 +281,43 @@ body {
   position: relative;
   display: inline-block;
   user-select: none;
-  width: 17%;
 
   .button {
-    display: flex;
-    flex-direction: row-reverse;
+    display: inline-flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
+    border: 2px solid;
+    width: 100%;
+    border-radius: 4px;
     cursor: pointer;
 
     .viewer {
-      color: black;
       padding: 12px;
-      width: 100%;
       font-size: 16px;
-      border: 2px solid;
-      border-radius: 4px;
       text-align: center;
-    }
-
-    span {
-      position: absolute;
-      padding: 6px;
     }
   }
 
   .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-direction: column;
-    position: absolute;
     overflow-x: hidden;
     height: 0;
     max-height: 144px;
-    background-color: #f9f9f9;
+    background-color: var(--lower-color);
     box-shadow: 2px 1px 10px 0px var(--shadow-color);
     transition: 0.2s cubic-bezier(0, 0.22, 0.41, 1);
     margin-top: 4px;
 
     button:not(:first-child) {
-      color: black;
       padding: 12px 16px;
       text-decoration: none;
       display: block;
 
       &:hover {
-        background: #dedbdb;
+        background: var(--btn-hover-color);
       }
     }
   }
@@ -318,7 +326,7 @@ body {
     position: absolute;
     left: 0.8rem;
     top: -0.7rem;
-    background: white;
+    background: var(--lower-color);
     padding: 0 2px;
   }
 }
@@ -425,7 +433,7 @@ body {
   align-items: center;
   display: flex;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -463,7 +471,6 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  cursor: pointer;
   overflow: hidden;
 
   div {
@@ -489,12 +496,6 @@ body {
 
     &:hover {
       border-bottom: 3px solid;
-    }
-  }
-
-  &:hover {
-    img {
-      transform: scale(1.05);
     }
   }
 }
@@ -558,12 +559,14 @@ body {
 
     .content {
       transform: translateY(999px);
+      width: 100%;
     }
   }
 
   .Picture {
     justify-content: center;
     align-items: flex-end;
+    height: auto;
 
     h1 {
       font-size: 15px;

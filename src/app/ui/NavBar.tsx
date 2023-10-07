@@ -7,6 +7,7 @@ import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
 import { DOWN_SYMBOL, UP_SYMBOL } from "../helpers/variables";
 
 export default function NavBar() {
+    const root = document.documentElement
     const MenuBtnHolder = useRef<HTMLUListElement>(null)
     const pages = ['games', 'videos', 'portfolio', 'contact']
     let pageOpened: string
@@ -64,11 +65,23 @@ export default function NavBar() {
                 </li>
                 {
                     pages.map((page, index) => {
-                        if (page == pageOpened) return (
-                            <li key={index} className="active pointer-events-none text-emerald-500">
-                                <NavButton href={`/${page}`}>{page}</NavButton>
-                            </li>
-                        )
+                        if (page == pageOpened) {
+                            switch(page) {
+                                case 'games':
+                                    root.style.setProperty('--arrow-position', '28%')
+                                    break
+                                case 'videos':
+                                    root.style.setProperty('--arrow-position', '54%')
+                                    break
+                                default: break
+                            }
+
+                            return (
+                                <li key={index} className="active pointer-events-none text-emerald-500">
+                                    <NavButton href={`/${page}`}>{page}</NavButton>
+                                </li>
+                            )
+                        }
 
                         return (
                             <li key={index}>

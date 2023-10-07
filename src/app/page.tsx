@@ -1,6 +1,7 @@
 'use client'
 
 import dynamic from "next/dynamic"
+import Popup from "./ui/Popup"
 
 
 const NavBar = dynamic(() => import('@/app/ui/NavBar'), { ssr: false }),
@@ -14,7 +15,7 @@ export default function Home() {
   return (
     <Main className='overflow-x-hidden'>
       <NavBar />
-      <Picture />
+      <Picture imgPath="/gaming.png" />
 
       <div className='text-center mt-5 font-bold text-2xl'>
         <h1>
@@ -37,6 +38,8 @@ export default function Home() {
           <VCard icon="/logo.png" title="lol" url="#" className='max-[768px]:scale-75' />
         </div>
       </div>
+
+      <Popup />
 
       <Footer />
     </Main>

@@ -9,11 +9,9 @@ import Image from "next/image";
  */
 
 export default function VCard({ icon, title, url, className }: VCard) {
-    const _class = (className) ? ` ${className}` : ''
-
     return (
         <a href={url} className='VCard'>
-            <div className={"container" + _class}>
+            <div className={"container" + ' ' + className}>
                 <Image alt={title} src={icon} width={345} height={245} />
                 <div className="Shadow"></div>
             </div>

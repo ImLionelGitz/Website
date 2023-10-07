@@ -15,8 +15,6 @@ export default function Input({ children, type, alt_text, width, height, onchang
         window.dispatchEvent(checkFire)
     }
 
-    const _class = (className) ? ` ${className}` : ''
-
     if (type == 'CHECKBOX' || type == 'RADIO' || type == 'TOGGLE') {
         const chosenInpType = type.toLowerCase()
 
@@ -26,7 +24,7 @@ export default function Input({ children, type, alt_text, width, height, onchang
         const toggleInnerContent = (type == 'TOGGLE') ? children : ''
 
         return (
-            <label className={inpStyle + _class}>
+            <label className={inpStyle + ' ' + className}>
                 {inpLabel}
                 <input type={inpType} onClick={onCheck} />
                 <span className={chosenInpType}>{toggleInnerContent}</span>
@@ -39,12 +37,12 @@ export default function Input({ children, type, alt_text, width, height, onchang
     const altInput = "border-2 p-2 outline-none rounded border-white bg-transparent"
 
     if (alt_text) return (
-        <input className={altInput + _class} type="text" placeholder={children}
+        <input className={altInput + ' ' + className} type="text" placeholder={children}
             style={{ width: absWidth + 'px', height: absHeight + 'px' }} onChange={onchange} />
     )
 
     return (
-        <textarea className={"TextInput" + _class} placeholder={children}
+        <textarea className={"TextInput" + ' ' + className} placeholder={children}
             cols={30} rows={10} style={{ width: absWidth + 'px', height: absHeight + 'px' }}></textarea>
     )
 }

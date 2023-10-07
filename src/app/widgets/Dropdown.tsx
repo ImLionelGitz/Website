@@ -49,7 +49,7 @@ export default function Dropdown({ label, msg, options }: LDropdown) {
     }
 
     if (typeof window !== 'undefined') {
-        window.addEventListener('clicked_outside', OnOutsideClick)
+        addEventListener('clicked_outside', OnOutsideClick)
     }
 
     return (
