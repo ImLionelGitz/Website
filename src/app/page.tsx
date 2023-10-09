@@ -1,15 +1,15 @@
 'use client'
 
 import dynamic from "next/dynamic"
+import Footer from "./ui/FooterBar"
+import Picture from "./ui/Picture"
+import GSlot from "./widgets/Gameslot"
+import Main from "./widgets/Main"
+import VCard from "./widgets/Videocard"
 import Popup from "./ui/Popup"
 
 
-const NavBar = dynamic(() => import('@/app/ui/NavBar'), { ssr: false }),
-Picture = dynamic(() => import('@/app/ui/Picture'), { ssr: false }),
-Footer = dynamic(() => import('@/app/ui/FooterBar'), { ssr: false }),
-Main = dynamic(() => import('@/app/widgets/Main'), { ssr: false }),
-GSlot = dynamic(() => import('@/app/widgets/Gameslot'), { ssr: false }),
-VCard = dynamic(() => import('@/app/widgets/Videocard'), { ssr: false })
+const NavBar = dynamic(() => import('@/app/ui/NavBar'), { ssr: false })
 
 export default function Home() {
   return (

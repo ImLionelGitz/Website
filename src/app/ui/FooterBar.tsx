@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faYoutube, faTwitter, faDiscord, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faYoutube, faTwitter, faInstagram, faTiktok } from "@fortawesome/free-brands-svg-icons";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 
 import MediaBtn from '@/app/widgets/Button'
 
 export default function Footer() {
-    const icons = [faYoutube, faTwitter, faDiscord, faInstagram, faLink],
+    const icons = [faYoutube, faTwitter, faTiktok, faInstagram, faLink],
         links = ['lol', 'popo', 'oio', 'uio', 'lkj']
     const date = new Date()
 

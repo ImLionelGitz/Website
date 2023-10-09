@@ -8,10 +8,10 @@ import GSlot from "../widgets/Gameslot"
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // import { faCog } from "@fortawesome/free-solid-svg-icons"
 import Popup from "../ui/Popup"
+import Main from "../widgets/Main"
+import Footer from "../ui/FooterBar"
 
-const NavBar = dynamic(() => import('@/app/ui/NavBar'), { ssr: false }),
-    Footer = dynamic(() => import('@/app/ui/FooterBar'), { ssr: false }),
-    Main = dynamic(() => import('@/app/widgets/Main'), { ssr: false })
+const NavBar = dynamic(() => import('@/app/ui/NavBar'), { ssr: false })
 
 export default function Games() {
     // function OnSettingClick() {

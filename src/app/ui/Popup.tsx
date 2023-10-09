@@ -59,12 +59,12 @@ export default function Popup({ settingMode, settingOptions, className }: Popup)
 
     if (settingMode && settingOptions) return (
         <div className="Popup HideBG" ref={PopupUI} onClick={OutClick}>
-            <div ref={ContentHolder} className={"content" + ' ' + className}>
+            <div ref={ContentHolder} className="content">
                 <h1 className='p-3 mx-12'>
-                    Settings
+                    Filter
                 </h1>
 
-                <div className='flex justify-center flex-wrap my-4'>
+                <div className={className || 'flex justify-center flex-wrap my-4'}>
                     {
                         data.map(setting => setting)
                     }

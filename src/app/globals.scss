@@ -32,6 +32,8 @@ body {
   transition: .2s ease;
 }
 
+// Effect Classes
+
 .active {
   &::after {
     border: 14px solid transparent;
@@ -61,6 +63,10 @@ body {
 .HideBG {
   background: none !important;
   pointer-events: none;
+}
+
+.GetIn {
+  width: 0 !important;
 }
 
 // Viatial components
@@ -154,6 +160,7 @@ body {
     height: 25px;
     width: 25px;
     background-color: #eee;
+    border: 2px solid;
     border-radius: 4px;
 
     &:after {
@@ -176,8 +183,8 @@ body {
   }
 
   .checkbox:after {
-    left: 9px;
-    top: 2px;
+    left: 7px;
+    top: 1px;
     width: 8px;
     height: 17px;
     border: solid white;
@@ -335,7 +342,7 @@ body {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  font-size: 30px;
+  font-size: 20px;
   transition: 0.2s ease-in;
 
   .container {
@@ -343,7 +350,6 @@ body {
     width: 345px;
     height: 245px;
     overflow: hidden;
-    margin-bottom: 8px;
 
     img {
       max-width: 345px;
@@ -400,6 +406,26 @@ body {
   }
 }
 
+.Contact {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 2px solid var(--logo-color);
+
+  .round-icon {
+    position: absolute;
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--logo-color);
+    width: 100%;
+    height: 100%;
+    transition: .2s ease;
+    overflow: hidden;
+  } 
+}
+
 // Ui components
 
 .Navigation {
@@ -448,8 +474,9 @@ body {
     color: var(--text-color);
     overflow: hidden;
     text-align: center;
-    transform: translateX(-999px);
+    transform: translateX(-999vh);
     border-radius: 4px;
+    width: 50%;
 
     h1 {
       border-bottom: 2px solid var(--text-color);
@@ -503,6 +530,13 @@ body {
 // Mobile only mode
 
 @media only screen and (max-width: 480px) {
+  // Vitial Components
+
+  .Contact {
+    transform: scale(0.8);
+    margin: 0;
+  }
+
   // Ui components
 
   .Navigation {

@@ -65,3 +65,10 @@ interface Popup {
     settingOptions?: JSX.Element[]
     className?: string
 }
+
+interface ContactSlot {
+    children: any
+    info: string
+    bgcolor: string
+    className?: string
+}
