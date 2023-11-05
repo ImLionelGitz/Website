@@ -1,44 +1,44 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import { Platforms } from "../helpers/variables";
 
 import Button from "../widgets/Button";
 import Image from "next/image";
+import { SharedDataHolder } from "../helpers/functions";
 
-export default function Popup({ settingMode, settingOptions, className }: Popup) {
-    const [data, setData] = useState<Array<any>>([]),
-        [links, setLink] = useState<Array<string>>([])
-
+export default function Popup({ Open, OpenerFunction, Type, Content, className }: Popup) {
     const ContentHolder = useRef<HTMLDivElement>(null),
-        PopupUI = useRef<HTMLDivElement>(null)
+    PopupUI = useRef<HTMLDivElement>(null)
 
-    if (typeof window !== 'undefined') {
-        if (settingMode && settingOptions) addEventListener('settings_clicked', (e) => {
-            const platforms = ContentHolder.current,
-                popup = PopupUI.current
+    const [ platforms, setPlatform ] = useState<Record<string, string>>({})
 
-            if (platforms && popup) {
-                setData(settingOptions)
-                platforms.classList.add('ShowUp')
-                popup.classList.remove('HideBG')
+    useEffect(() => {
+        if (Open) {
+            if (Type == 'SETTINGSMENU') {
+                const platforms = ContentHolder.current,
+                    popup = PopupUI.current
+
+                if (platforms && popup) {
+                    platforms.classList.add('ShowUp')
+                    popup.classList.remove('HideBG')
+                }
             }
-        })
 
-        else addEventListener('game_slot_clicked', (e) => {
-            const event = e as CustomEvent,
-                data = event.detail as { available: Array<{ platform: string, logo: string }>, urls: string[] }
+            else {
+                const platforms = ContentHolder.current,
+                    popup = PopupUI.current
 
-            const platforms = ContentHolder.current,
-                popup = PopupUI.current
-
-            if (platforms && popup) {
-                setData(data.available)
-                setLink(data.urls)
-                platforms.classList.add('ShowUp')
-                popup.classList.remove('HideBG')
+                if (platforms && popup) {
+                    setPlatform(SharedDataHolder.GetData())
+                    platforms.classList.add('ShowUp')
+                    popup.classList.remove('HideBG')
+                }
             }
-        })
-    }
+
+            OpenerFunction(false)
+        }
+    }, [Open, OpenerFunction, Type])
 
     function CloseModal() {
         const platforms = ContentHolder.current,
@@ -47,9 +47,7 @@ export default function Popup({ settingMode, settingOptions, className }: Popup)
         if (popup && platforms) {
             platforms.classList.remove('ShowUp')
             popup.classList.add('HideBG')
-
-            const clickEvent = new CustomEvent('clicked_outside')
-            dispatchEvent(clickEvent)
+            SharedDataHolder.ClearData()
         }
     }
 
@@ -57,16 +55,16 @@ export default function Popup({ settingMode, settingOptions, className }: Popup)
         if (e.target == PopupUI.current) CloseModal()
     }
 
-    if (settingMode && settingOptions) return (
+    if (Type == 'SETTINGSMENU' && Content.length !== 0) return (
         <div className="Popup HideBG" ref={PopupUI} onClick={OutClick}>
             <div ref={ContentHolder} className="content">
                 <h1 className='p-3 mx-12'>
                     Filter
                 </h1>
 
-                <div className={className || 'flex justify-center flex-wrap my-4'}>
+                <div className={((className) ? className : 'flex justify-center flex-wrap my-4')}>
                     {
-                        data.map(setting => setting)
+                        Content.map(settingOption => settingOption)
                     }
                 </div>
 
@@ -86,12 +84,11 @@ export default function Popup({ settingMode, settingOptions, className }: Popup)
 
                 <div className='flex justify-center flex-wrap my-4'>
                     {
-                        data.map((platform, index) => {
-                            const link = (links[index]) ? links[index] : '#'
+                        Object.keys(platforms).map((platform, index) => {
 
                             return (
-                                <Button key={index} href={link} className='m-4'>
-                                    <Image src={platform.logo} alt={platform.platform} width={59} height={35} />
+                                <Button key={index} target='_blank' href={platforms[platform]} className='m-4'>
+                                    <Image src={Platforms[platform as keyof PlatformsTypes]} alt={platform} width={59} height={35} />
                                 </Button>
                             )
                         })

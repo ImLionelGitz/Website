@@ -21,7 +21,7 @@ export default function ContactSlot({ children, info, bgcolor, className }: Cont
 
   return (
     <div onMouseEnter={OnMouseEnter} onMouseLeave={OnMouseLeave}
-      style={{ '--logo-color': bgcolor } as React.CSSProperties} className={'Contact ' + className || ''}
+      style={{ '--logo-color': bgcolor } as React.CSSProperties} className={'Contact ' + ((className) ? className : '')}
     >
       <div ref={tooltip} className='round-icon'>{children}</div>
       <div className='p-2'>{info}</div>

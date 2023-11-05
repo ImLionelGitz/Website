@@ -4,11 +4,33 @@ interface InputTypes {
     'TOGGLE': string
 }
 
+interface PlatformsTypes {
+    'ROBLOX': string ,
+    'ITCH_IO': string,
+    'GAMEJOLT': string,
+    'APKPURE': string
+}
+
+interface PopupTypes {
+    'SETTINGSMENU': string
+    'PLATFORMSMENU': string
+}
+
+interface HTMLAnchorTarget {
+    "_self" : string
+    "_blank": string
+    "_parent": string
+    "_top": string
+}
+
+// Elemental types
+
 interface Lbutton {
     children: any
     bg?: boolean
     href?: string
     className?: string
+    target?: keyof HTMLAnchorTarget
     onclick?: (e: any) => void
 }
 
@@ -18,15 +40,16 @@ interface LInput {
     alt_text?: boolean
     width?: number
     height?: number
-    onchange?: (e: any) => void
+    onchange: (e: any) => void
     className?: string
 }
 
 interface GCard {
     icon: string
     title: string
-    platforms: Array<{ platform: string, logo: string }>
+    platforms: Array<keyof PlatformsTypes>
     links: string[]
+    openPopup: (open: boolean) => void
     className?: string
 }
 
@@ -45,6 +68,7 @@ interface VCard {
     icon: string
     title: string
     url: string
+    activity: string
     className?: string
 }
 
@@ -61,8 +85,10 @@ interface LHeader {
 }
 
 interface Popup {
-    settingMode?: boolean
-    settingOptions?: JSX.Element[]
+    Content: JSX.Element[],
+    Open: boolean
+    Type: keyof PopupTypes
+    OpenerFunction?: any
     className?: string
 }
 
@@ -70,5 +96,33 @@ interface ContactSlot {
     children: any
     info: string
     bgcolor: string
+    className?: string
+}
+
+interface GameDBStructure {
+    name: string
+    icon: string
+    available: Array<keyof PlatformsTypes>
+    urls: string[]
+}
+
+interface VideoDBStructure {
+    name: string
+    thumbnail: string
+    playlist: string
+    activity: string
+}
+
+interface CheckedDataReturnType {
+    source: string
+    box: HTMLInputElement
+    value: boolean
+}
+
+interface GDriveLoader {
+    src: string
+}
+
+interface Footer {
     className?: string
 }

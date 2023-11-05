@@ -3,48 +3,56 @@
 import dynamic from "next/dynamic"
 import Picture from "../ui/Picture"
 import GSlot from "../widgets/Gameslot"
-// import Dropdown from "../widgets/Dropdown"
-// import Button from "../widgets/Button"
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-// import { faCog } from "@fortawesome/free-solid-svg-icons"
+import { useState, useEffect } from 'react'
 import Popup from "../ui/Popup"
 import Main from "../widgets/Main"
 import Footer from "../ui/FooterBar"
+import { GameDB, Images } from "../helpers/variables"
 
 const NavBar = dynamic(() => import('@/app/ui/NavBar'), { ssr: false })
 
-export default function Games() {
-    // function OnSettingClick() {
-    //     const event = new CustomEvent('settings_clicked')
-    //     window.dispatchEvent(event)
-    // }
+let StopFetch = false
 
-    return (
-        <Main>
+export default function Games() {
+    const [DB, SetDB] = useState<any>(),
+        [popupVisible, setVisible] = useState(false)
+
+    useEffect(() => {
+        if (!StopFetch) {
+            fetch(GameDB).then(response => response.json()).then(data => {
+                SetDB(data)
+            })
+
+            StopFetch = true
+        }
+    })
+
+    if (DB) return (
+        <Main className='min-h-screen flex flex-col'>
             <NavBar />
-            <Picture imgPath="/gaming.png" className='h-64' />
+            <Picture imgPath={Images.GAMING} className='h-64' />
 
             <div className='text-center text-2xl font-bold'>
                 <div className='mt-3'>
                     <h1 className="inline">Games</h1>
-                    {/* <Button onclick={OnSettingClick} className="absolute right-0 mr-4">
-                        <FontAwesomeIcon icon={faCog} />
-                    </Button> */}
                 </div>
 
                 <div className='flex flex-wrap justify-center'>
-                    <GSlot icon="/logo.png" title="lolol" platforms={[]} links={[]} className='scale-75' />
-                    <GSlot icon="/logo.png" title="lolol" platforms={[]} links={[]} className='scale-75' />
-                    <GSlot icon="/logo.png" title="lolol" platforms={[]} links={[]} className='scale-75' />
+                    {
+                        Object.keys(DB).map((token, index) => {
+                            const data = DB[token] as GameDBStructure
+
+                            return (
+                                <GSlot key={index} icon={data.icon} title={data.name} platforms={data.available}
+                                    links={data.urls} className='scale-75' openPopup={setVisible} />
+                            )
+                        })
+                    }
                 </div>
             </div>
 
-            {/* <Popup settingMode className='w-2/4' settingOptions={[
-                <Dropdown key={1} label="Platform" msg="Select a Platform" options={['lol']} />
-            ]} /> */}
-
-            <Popup />
-            <Footer />
+            <Popup Content={[]} Type='PLATFORMSMENU' Open={popupVisible} OpenerFunction={setVisible} />
+            <Footer className='flex flex-col justify-evenly flex-1' />
         </Main>
     )
 }

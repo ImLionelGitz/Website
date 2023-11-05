@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { SharedDataHolder } from "../helpers/functions";
 
 /**
  * Create a game card.
@@ -10,14 +11,19 @@ import Image from "next/image";
  * @emits CustomEvent called `game_slot_clicked` with a `gameTitle` and a `gameID`
  */
 
-export default function GSlot({ icon, title, platforms, links, className }: GCard) {
+export default function GSlot({ icon, title, platforms, links, openPopup, className }: GCard) {
     function OnSlotClick() {
-        const gslot = new CustomEvent('game_slot_clicked', { detail: {available: platforms, urls: links} })
-        window.dispatchEvent(gslot)
+        platforms.forEach((platform, index) => {
+            const platformLink = (links[index]) ? links[index] : '#'
+
+            SharedDataHolder.AddData(platform, platformLink)
+        })
+
+        openPopup(true)
     }
 
     return (
-        <button className={'GSlot' + ' ' + className} onClick={OnSlotClick}>
+        <button className={'GSlot' + ' ' + ((className) ? className : '')} onClick={OnSlotClick}>
             <Image alt={title} src={icon} width={250} height={345} />
             <h3>{title}</h3>
         </button>

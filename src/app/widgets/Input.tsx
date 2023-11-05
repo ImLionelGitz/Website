@@ -9,12 +9,6 @@
  */
 
 export default function Input({ children, type, alt_text, width, height, onchange, className }: LInput) {
-    function onCheck(e: any) {
-        const value = e.target as HTMLInputElement
-        const checkFire = new CustomEvent('on_check', { detail: { source: children, value: value.checked } })
-        window.dispatchEvent(checkFire)
-    }
-
     if (type == 'CHECKBOX' || type == 'RADIO' || type == 'TOGGLE') {
         const chosenInpType = type.toLowerCase()
 
@@ -24,9 +18,13 @@ export default function Input({ children, type, alt_text, width, height, onchang
         const toggleInnerContent = (type == 'TOGGLE') ? children : ''
 
         return (
-            <label className={inpStyle + ' ' + className}>
+            <label className={inpStyle + ' ' + ((className) ? className : '')}>
                 {inpLabel}
-                <input type={inpType} onClick={onCheck} />
+                <input type={inpType} onClick={(e) => onchange({
+                    source: inpLabel.toLowerCase(),
+                    box: e.target,
+                    value: (e.target as HTMLInputElement).checked
+                })} />
                 <span className={chosenInpType}>{toggleInnerContent}</span>
             </label>
         )
@@ -37,12 +35,12 @@ export default function Input({ children, type, alt_text, width, height, onchang
     const altInput = "border-2 p-2 outline-none rounded border-white bg-transparent"
 
     if (alt_text) return (
-        <input className={altInput + ' ' + className} type="text" placeholder={children}
+        <input className={altInput + ' ' + ((className) ? className : '')} type="text" placeholder={children}
             style={{ width: absWidth + 'px', height: absHeight + 'px' }} onChange={onchange} />
     )
 
     return (
-        <textarea className={"TextInput" + ' ' + className} placeholder={children}
+        <textarea className={"TextInput" + ' ' + ((className) ? className : '')} placeholder={children}
             cols={30} rows={10} style={{ width: absWidth + 'px', height: absHeight + 'px' }}></textarea>
     )
 }

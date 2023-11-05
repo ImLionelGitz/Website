@@ -6,16 +6,7 @@ import { useRef } from 'react'
  */
 
 export default function Main({ children, className }: LMain) {
-    const main = useRef<HTMLDivElement>(null)
-
-    function handleClick(event: any) {
-        if (main.current && event.target == main.current) {
-            const clickEvent = new CustomEvent('clicked_outside')
-            window.dispatchEvent(clickEvent)
-        }
-    }
-
     return (
-        <div ref={main} className={className} onClick={handleClick}>{children}</div>
+        <div className={((className) ? className : '')}>{children}</div>
     )
 }

@@ -6,9 +6,9 @@
  * @param  {void}    onclick Add a function when this button is clicked (**This param is useless, if `href` is specified!**)
  */
 
-export default function Button({ children, bg, href, className, onclick }: Lbutton) {
+export default function Button({ children, bg, href, className, target, onclick }: Lbutton) {
     const bgType = (bg) ? 'ButtonWithBG' : 'ButtonWithoutBG'
 
-    if (typeof href == 'string') return (<a className={bgType + ' ' + className} href={href}>{children}</a>)
-    else return (<button className={bgType + ' ' + className} onClick={onclick}>{children}</button>)
+    if (typeof href == 'string') return (<a className={bgType + ' ' + ((className) ? className : '')} target={ (target) ? target : '_self' } href={href}>{children}</a>)
+    else return (<button className={bgType + ' ' + ((className) ? className : '')} onClick={onclick}>{children}</button>)
 }

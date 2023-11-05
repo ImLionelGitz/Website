@@ -14,7 +14,7 @@ export default function Portfolio() {
             <NavBar />
 
             <div className='flex justify-center items-center flex-col text-2xl font-bold flex-1'>
-                <Image alt='Under Construction'
+                <Image priority alt='Under Construction'
                 src={'https://cdn.pixabay.com/photo/2017/06/16/07/26/under-construction-2408061_1280.png'}
                 width={500} height={500} />
             </div>

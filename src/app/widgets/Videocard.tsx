@@ -8,10 +8,10 @@ import Image from "next/image";
  * @param className Add classes to this card for additional styling (optional)
  */
 
-export default function VCard({ icon, title, url, className }: VCard) {
+export default function VCard({ icon, title, url, activity, className }: VCard) {
     return (
-        <a href={url} className='VCard'>
-            <div className={"container" + ' ' + className}>
+        <a href={url} target='_blank' className='VCard' activity-status={activity}>
+            <div className={"container" + ' ' + ((className) ? className : '')}>
                 <Image alt={title} src={icon} width={345} height={245} />
                 <div className="Shadow"></div>
             </div>

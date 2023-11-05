@@ -11,6 +11,7 @@ $BtnThemeClick: #047857;
   --text-color: #000;
   --shadow-color: gray;
   --btn-hover-color: #dedbdb;
+  --bulb-color: yellow;
 }
 
 .DarkMode {
@@ -19,6 +20,7 @@ $BtnThemeClick: #047857;
   --text-color: #f9f9f9;
   --shadow-color: black;
   --btn-hover-color: #636363;
+  --bulb-color: #eee;
 }
 
 :root {
@@ -47,8 +49,6 @@ body {
 }
 
 .headerEng {
-  cursor: pointer;
-
   &:hover {
     img {
       transform: scale(1.05);
@@ -211,11 +211,7 @@ body {
   }
 
   .toggle {
-    color: yellow;
-  }
-
-  input:checked~.toggle {
-    color: #eee;
+    color: var(--bulb-color);
   }
 }
 

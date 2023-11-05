@@ -2,20 +2,59 @@
 
 import dynamic from "next/dynamic"
 import Footer from "./ui/FooterBar"
-import Picture from "./ui/Picture"
 import GSlot from "./widgets/Gameslot"
 import Main from "./widgets/Main"
 import VCard from "./widgets/Videocard"
 import Popup from "./ui/Popup"
 
+import { useEffect, useState } from 'react'
+import { GameDB, VideoDB } from "./helpers/variables"
+import { GetCache, GetRandomData, SetCache } from "./helpers/functions"
 
-const NavBar = dynamic(() => import('@/app/ui/NavBar'), { ssr: false })
+
+const NavBar = dynamic(() => import('@/app/ui/NavBar'), { ssr: false }),
+  Picture = dynamic(() => import('@/app/ui/Picture'), { ssr: false })
+
+let StopFetch = false
 
 export default function Home() {
-  return (
-    <Main className='overflow-x-hidden'>
+  const [DataStore, setDataStore] = useState<{ video: VideoDBStructure, apps: GameDBStructure[] }>(),
+  [popupVisible, setVisible] = useState(false)
+
+  useEffect(() => {
+    if (!StopFetch && typeof window !== 'undefined') {
+      const cache = GetCache('HomePageData')
+
+      if (cache) {
+        setDataStore(cache)
+      }
+
+      else {
+        Promise.all([VideoDB, GameDB].map(url => fetch(url).then(response => response.json()))).then(data => {
+          const dataforstore: any = {}
+
+          const videos: Record<string, VideoDBStructure> = data[0],
+            apps: Record<string, GameDBStructure> = data[1]
+
+          const videoIndice = GetRandomData(videos, 1, true),
+            appsIndice = GetRandomData(apps, 1)
+
+          dataforstore['video'] = videos[videoIndice[0]]
+          dataforstore['apps'] = appsIndice.map(indice => apps[indice])
+
+          setDataStore(dataforstore)
+          SetCache('HomePageData', dataforstore)
+        })
+      }
+
+      StopFetch = true
+    }
+  }, [DataStore])
+
+  if (DataStore) return (
+    <Main className='overflow-x-hidden min-h-screen flex flex-col'>
       <NavBar />
-      <Picture imgPath="/gaming.png" />
+      <Picture ytThumb imgPath="" />
 
       <div className='text-center mt-5 font-bold text-2xl'>
         <h1>
@@ -23,9 +62,14 @@ export default function Home() {
         </h1>
 
         <div className='flex flex-wrap justify-center'>
-          <GSlot icon="/logo.png" title="lolol" platforms={[]} links={[]} className='scale-75' />
-          <GSlot icon="/logo.png" title="lolol" platforms={[]} links={[]} className='scale-75' />
-          <GSlot icon="/logo.png" title="lolol" platforms={[]} links={[]} className='scale-75' />
+          {
+            DataStore.apps.map((app, index) => {
+              return (
+                <GSlot key={index} icon={app.icon} title={app.name} platforms={app.available}
+                  links={app.urls} className='scale-75' openPopup={setVisible} />
+              )
+            })
+          }
         </div>
       </div>
 
@@ -35,13 +79,14 @@ export default function Home() {
         </h1>
 
         <div className='flex flex-wrap justify-center'>
-          <VCard icon="/logo.png" title="lol" url="#" className='max-[768px]:scale-75' />
+          <VCard icon={DataStore.video.thumbnail} title={DataStore.video.name} url={DataStore.video.playlist}
+            className='max-[768px]:scale-75' activity="none" />
         </div>
       </div>
 
-      <Popup />
+      <Popup Type='PLATFORMSMENU' Content={[]} Open={popupVisible} OpenerFunction={setVisible} />
 
-      <Footer />
+      <Footer className='flex flex-col justify-evenly flex-1' />
     </Main>
   )
 }

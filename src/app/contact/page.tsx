@@ -8,6 +8,7 @@ import ContactSlot from '../widgets/ContactSlot'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDiscord, faSkype, faTelegram } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { Images } from '../helpers/variables'
 
 const NavBar = dynamic(() => import('@/app/ui/NavBar'), { ssr: false })
 
@@ -16,7 +17,7 @@ export default function Contact() {
     return (
         <Main className='overflow-x-hidden flex flex-col min-h-screen'>
             <NavBar />
-            <Picture imgPath="/contact.png" />
+            <Picture imgPath={Images.CONTACT} />
 
             <div className='flex justify-center items-center flex-col text-2xl font-bold flex-1'>
                 <ContactSlot info='kuzlivegang' bgcolor={'#6925d1'} className='m-3'>
@@ -34,7 +35,7 @@ export default function Contact() {
                     Skype
                 </ContactSlot>
 
-                <ContactSlot info='fridaynightfunkintimothy@gmail.com' bgcolor={'#e22638'} className='m-3'>
+                <ContactSlot info='lionelleoplayz@gmail.com' bgcolor={'#e22638'} className='m-3'>
                     <FontAwesomeIcon icon={faEnvelope} className='mr-2' />
                     E-Mail
                 </ContactSlot>

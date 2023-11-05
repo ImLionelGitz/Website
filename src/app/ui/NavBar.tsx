@@ -4,14 +4,16 @@ import NavButton from '@/app/widgets/Button'
 import { useRef } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
-import { DOWN_SYMBOL, UP_SYMBOL } from "../helpers/variables";
+import { DOWN_SYMBOL, Images, UP_SYMBOL } from "../helpers/variables";
+
+const root = document.body,
+pages = ['games', 'videos', 'portfolio', 'contact']
+
+let pageOpened: string,
+DropdownOpen = false
 
 export default function NavBar() {
-    const root = document.documentElement
     const MenuBtnHolder = useRef<HTMLUListElement>(null)
-    const pages = ['games', 'videos', 'portfolio', 'contact']
-    let pageOpened: string
-    let DropdownOpen = false
 
     function DropdownClick(e: any) {
         if (MenuBtnHolder.current) {
@@ -32,31 +34,26 @@ export default function NavBar() {
         }
     }
 
+    function OnBulbClick() {
+        if (!root.classList.contains('DarkMode')) {
+            root.classList.replace('LightMode', 'DarkMode')
+            localStorage.setItem('ThemeColor', 'DarkMode')
+        }
+
+        else {
+            root.classList.replace('DarkMode', 'LightMode')
+            localStorage.removeItem('ThemeColor')
+        }
+    }
+
     if (typeof window !== 'undefined') {
         pageOpened = window.location.pathname.split('/').slice(1)[0]
-
-        addEventListener('on_check', (e) => {
-            const event = e as CustomEvent,
-                data = event.detail as { source: any, value: boolean }
-
-            if (typeof data.source !== 'string') {
-                const root = document.body
-
-                if (data.value) {
-                    root.classList.replace('LightMode', 'DarkMode')
-                }
-
-                else {
-                    root.classList.replace('DarkMode', 'LightMode')
-                }
-            }
-        })
     }
 
     return (
         <div className="Navigation p-1">
             <a href="/">
-                <Image alt="logo" src='/logo.png' width={200} height={200} />
+                <Image alt="logo" src={Images.LOGO} width={200} height={200} />
             </a>
 
             <ul ref={MenuBtnHolder} className='uppercase mt-4 h-7'>
@@ -66,7 +63,7 @@ export default function NavBar() {
                 {
                     pages.map((page, index) => {
                         if (page == pageOpened) {
-                            switch(page) {
+                            switch (page) {
                                 case 'games':
                                     root.style.setProperty('--arrow-position', '28%')
                                     break
@@ -92,7 +89,7 @@ export default function NavBar() {
                 }
             </ul>
 
-            <LightModeToggle className='m-3' type='TOGGLE'>
+            <LightModeToggle onchange={OnBulbClick} className='m-3' type='TOGGLE'>
                 <FontAwesomeIcon icon={faLightbulb} />
             </LightModeToggle>
         </div>
