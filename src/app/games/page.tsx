@@ -1,33 +1,51 @@
 'use client'
 
 import dynamic from "next/dynamic"
+import { useState, useEffect } from 'react'
 import Picture from "../ui/Picture"
 import GSlot from "../widgets/Gameslot"
-import { useState, useEffect } from 'react'
-import Popup from "../ui/Popup"
 import Main from "../widgets/Main"
 import Footer from "../ui/FooterBar"
 import { GameDB, Images } from "../helpers/variables"
 
 const NavBar = dynamic(() => import('@/app/ui/NavBar'), { ssr: false })
 
-let StopFetch = false
+let PlatformsAvailable: Record<string, string> = {}
 
 export default function Games() {
-    const [DB, SetDB] = useState<any>(),
-        [popupVisible, setVisible] = useState(false)
+    const [DatabaseCache, setDatabaseCache] = useState<Record<string, any>>()
+    const [PopupUI, SetPopupUI] = useState<JSX.Element>()
 
     useEffect(() => {
-        if (!StopFetch) {
-            fetch(GameDB).then(response => response.json()).then(data => {
-                SetDB(data)
-            })
+        fetch(GameDB).then(response => response.json()).then(data => {
+            setDatabaseCache(data)
+        })
+    }, [])
 
-            StopFetch = true
+    function OnSlotClick(platforms: Array<keyof PlatformsTypes>, links: Array<string>) {
+        platforms.forEach((platform, i) => {
+            const link = (links[i]) ? links[i] : '#'
+            PlatformsAvailable[platform] = link
+        })
+
+        if (!PopupUI) {
+            const Popup = dynamic(() => import('@/app/ui/Popup'), { ssr: false })
+            SetPopupUI(<Popup Type='PLATFORMSMENU' Content={PlatformsAvailable} onClose={CloseModal} />)
         }
-    })
 
-    if (DB) return (
+        else dispatchEvent(new CustomEvent('open_modal', { detail: PlatformsAvailable }))
+    }
+
+    function CloseModal(e: any) {
+        const Element = e.target as HTMLElement
+
+        if (Element.classList.contains('Popup')) {
+            PlatformsAvailable = {}
+            dispatchEvent(new Event('close_modal'))
+        }
+    }
+
+    if (DatabaseCache) return (
         <Main className='min-h-screen flex flex-col'>
             <NavBar />
             <Picture imgPath={Images.GAMING} className='h-64' />
@@ -39,19 +57,19 @@ export default function Games() {
 
                 <div className='flex flex-wrap justify-center'>
                     {
-                        Object.keys(DB).map((token, index) => {
-                            const data = DB[token] as GameDBStructure
+                        Object.keys(DatabaseCache).map((token, index) => {
+                            const data = DatabaseCache[token] as GameDBStructure
 
                             return (
                                 <GSlot key={index} icon={data.icon} title={data.name} platforms={data.available}
-                                    links={data.urls} className='scale-75' openPopup={setVisible} />
+                                    links={data.urls} onSlotClick={OnSlotClick} className="scale-75" />
                             )
                         })
                     }
                 </div>
             </div>
 
-            <Popup Content={[]} Type='PLATFORMSMENU' Open={popupVisible} OpenerFunction={setVisible} />
+            { PopupUI && PopupUI }
             <Footer className='flex flex-col justify-evenly flex-1' />
         </Main>
     )

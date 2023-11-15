@@ -5,68 +5,83 @@ import Footer from "./ui/FooterBar"
 import GSlot from "./widgets/Gameslot"
 import Main from "./widgets/Main"
 import VCard from "./widgets/Videocard"
-import Popup from "./ui/Popup"
 
 import { useEffect, useState } from 'react'
 import { GameDB, VideoDB } from "./helpers/variables"
 import { GetCache, GetRandomData, SetCache } from "./helpers/functions"
 
+const NavBar = dynamic(() => import('@/app/ui/NavBar'), { ssr: false })
+const Picture = dynamic(() => import('@/app/ui/Picture'), { ssr: false })
 
-const NavBar = dynamic(() => import('@/app/ui/NavBar'), { ssr: false }),
-  Picture = dynamic(() => import('@/app/ui/Picture'), { ssr: false })
-
-let StopFetch = false
+let PlatformsAvailable: Record<string, string> = {}
 
 export default function Home() {
-  const [DataStore, setDataStore] = useState<{ video: VideoDBStructure, apps: GameDBStructure[] }>(),
-  [popupVisible, setVisible] = useState(false)
+  const [Database, setDatabase] = useState<{ video: VideoDBStructure, apps: GameDBStructure[] }>()
+  const [popupUI, setPopupUI] = useState<JSX.Element>()
 
   useEffect(() => {
-    if (!StopFetch && typeof window !== 'undefined') {
-      const cache = GetCache('HomePageData')
+    const cache = GetCache('HomePageData')
 
-      if (cache) {
-        setDataStore(cache)
-      }
-
-      else {
-        Promise.all([VideoDB, GameDB].map(url => fetch(url).then(response => response.json()))).then(data => {
-          const dataforstore: any = {}
-
-          const videos: Record<string, VideoDBStructure> = data[0],
-            apps: Record<string, GameDBStructure> = data[1]
-
-          const videoIndice = GetRandomData(videos, 1, true),
-            appsIndice = GetRandomData(apps, 1)
-
-          dataforstore['video'] = videos[videoIndice[0]]
-          dataforstore['apps'] = appsIndice.map(indice => apps[indice])
-
-          setDataStore(dataforstore)
-          SetCache('HomePageData', dataforstore)
-        })
-      }
-
-      StopFetch = true
+    if (cache) {
+      setDatabase(cache)
     }
-  }, [DataStore])
 
-  if (DataStore) return (
+    else {
+      Promise.all([VideoDB, GameDB].map(url => fetch(url).then(response => response.json()))).then(data => {
+        const dataforstore: any = {}
+
+        const videos: Record<string, VideoDBStructure> = data[0]
+        const apps: Record<string, GameDBStructure> = data[1]
+
+        const videoIndice = GetRandomData(videos, 1, true)
+        const appsIndice = GetRandomData(apps, 1)
+
+        dataforstore['video'] = videos[videoIndice[0]]
+        dataforstore['apps'] = appsIndice.map(indice => apps[indice])
+
+        setDatabase(dataforstore)
+        SetCache('HomePageData', dataforstore)
+      })
+    }
+  }, [])
+
+  function OnSlotClick(platforms: Array<keyof PlatformsTypes>, links: Array<string>) {
+    platforms.forEach((platform, i) => {
+      const link = (links[i]) ? links[i] : '#'
+      PlatformsAvailable[platform] = link
+    })
+
+    if (!popupUI) {
+      const Popup = dynamic(() => import('@/app/ui/Popup'), { ssr: false })
+      setPopupUI(<Popup Type='PLATFORMSMENU' Content={PlatformsAvailable} onClose={CloseModal} />)
+    }
+
+    else dispatchEvent(new Event('open_modal'))
+  }
+
+  function CloseModal(e: any) {
+    const Element = e.target as HTMLElement
+
+    if (Element.classList.contains('Popup')) {
+      PlatformsAvailable = {}
+      dispatchEvent(new Event('close_modal'))
+    }
+  }
+
+  if (Database) return (
     <Main className='overflow-x-hidden min-h-screen flex flex-col'>
       <NavBar />
       <Picture ytThumb imgPath="" />
 
       <div className='text-center mt-5 font-bold text-2xl'>
-        <h1>
-          Explore These Random Games!
-        </h1>
+        <h1>Explore These Random Games!</h1>
 
         <div className='flex flex-wrap justify-center'>
           {
-            DataStore.apps.map((app, index) => {
+            Database.apps.map((app, index) => {
               return (
                 <GSlot key={index} icon={app.icon} title={app.name} platforms={app.available}
-                  links={app.urls} className='scale-75' openPopup={setVisible} />
+                  links={app.urls} className='scale-75' onSlotClick={OnSlotClick} />
               )
             })
           }
@@ -79,13 +94,11 @@ export default function Home() {
         </h1>
 
         <div className='flex flex-wrap justify-center'>
-          <VCard icon={DataStore.video.thumbnail} title={DataStore.video.name} url={DataStore.video.playlist}
+          <VCard icon={Database.video.thumbnail} title={Database.video.name} url={Database.video.playlist}
             className='max-[768px]:scale-75' activity="none" />
         </div>
       </div>
-
-      <Popup Type='PLATFORMSMENU' Content={[]} Open={popupVisible} OpenerFunction={setVisible} />
-
+      {popupUI && popupUI}
       <Footer className='flex flex-col justify-evenly flex-1' />
     </Main>
   )

@@ -14,31 +14,29 @@ const NavBar = dynamic(() => import('@/app/ui/NavBar'), { ssr: false })
 
 
 export default function Contact() {
+    const contacts: Record<string, any> = {
+        'Discord': { info: 'kuzlivegang', bgcolor: '#6925d1', icon: faDiscord },
+        'Telegram': { info: '@LionelLeoPlayz', bgcolor: '#229ED9', icon: faTelegram },
+        'Skype': { info: 'live:.cid.83b9a465ed726c7e', bgcolor: '#00aff0', icon: faSkype },
+        'E-Mail': { info: 'lionelleoplayz@gmail.com', bgcolor: '#e22638', icon: faEnvelope }
+    }
     return (
         <Main className='overflow-x-hidden flex flex-col min-h-screen'>
             <NavBar />
             <Picture imgPath={Images.CONTACT} />
 
             <div className='flex justify-center items-center flex-col text-2xl font-bold flex-1'>
-                <ContactSlot info='kuzlivegang' bgcolor={'#6925d1'} className='m-3'>
-                    <FontAwesomeIcon icon={faDiscord} className='mr-2' />
-                    Discord
-                </ContactSlot>
-
-                <ContactSlot info='@LionelLeoPlayz' bgcolor={'#229ED9'} className='m-3'>
-                    <FontAwesomeIcon icon={faTelegram} className='mr-2' />
-                    Telegram
-                </ContactSlot>
-
-                <ContactSlot info='live:.cid.83b9a465ed726c7e' bgcolor={'#00aff0'} className='m-3'>
-                    <FontAwesomeIcon icon={faSkype} className='mr-2' />
-                    Skype
-                </ContactSlot>
-
-                <ContactSlot info='lionelleoplayz@gmail.com' bgcolor={'#e22638'} className='m-3'>
-                    <FontAwesomeIcon icon={faEnvelope} className='mr-2' />
-                    E-Mail
-                </ContactSlot>
+                {
+                    Object.keys(contacts).map((token, index) => {
+                        const contactInfo = contacts[token]
+                        return (
+                            <ContactSlot key={index} info={contactInfo.info} bgcolor={contactInfo.bgcolor} className='m-3'>
+                                <FontAwesomeIcon icon={contactInfo.icon} className='mr-2 pointer-events-none' />
+                                {token}
+                            </ContactSlot>
+                        )
+                    })
+                }
             </div>
             <Footer />
         </Main>

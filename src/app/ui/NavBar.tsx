@@ -1,35 +1,28 @@
 import Image from "next/image";
 import LightModeToggle from '@/app/widgets/Input'
 import NavButton from '@/app/widgets/Button'
-import { useRef } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
 import { DOWN_SYMBOL, Images, UP_SYMBOL } from "../helpers/variables";
 
-const root = document.body,
-pages = ['games', 'videos', 'portfolio', 'contact']
-
-let pageOpened: string,
-DropdownOpen = false
+const root = document.body
+const pages = ['games', 'videos', 'portfolio', 'contact']
 
 export default function NavBar() {
-    const MenuBtnHolder = useRef<HTMLUListElement>(null)
-
     function DropdownClick(e: any) {
-        if (MenuBtnHolder.current) {
-            const btn = e.target as HTMLButtonElement,
-                Dropdown = MenuBtnHolder.current
+        const btn = e.target as HTMLButtonElement
+        const parent = btn.parentElement as HTMLLIElement
+        const holder = parent.parentElement
 
-            if (!DropdownOpen) {
+        if (holder && holder.id === 'menuContainer') {
+            if (!holder.classList.contains('highten')) {
                 btn.innerText = UP_SYMBOL
-                Dropdown.classList.add('highten')
-                DropdownOpen = true
+                holder.classList.add('highten')
             }
 
             else {
                 btn.innerText = DOWN_SYMBOL
-                Dropdown.classList.remove('highten')
-                DropdownOpen = false
+                holder.classList.remove('highten')
             }
         }
     }
@@ -37,7 +30,7 @@ export default function NavBar() {
     function OnBulbClick() {
         if (!root.classList.contains('DarkMode')) {
             root.classList.replace('LightMode', 'DarkMode')
-            localStorage.setItem('ThemeColor', 'DarkMode')
+            localStorage.setItem('ThemeColor', 'true')
         }
 
         else {
@@ -46,23 +39,19 @@ export default function NavBar() {
         }
     }
 
-    if (typeof window !== 'undefined') {
-        pageOpened = window.location.pathname.split('/').slice(1)[0]
-    }
-
     return (
         <div className="Navigation p-1">
             <a href="/">
                 <Image alt="logo" src={Images.LOGO} width={200} height={200} />
             </a>
 
-            <ul ref={MenuBtnHolder} className='uppercase mt-4 h-7'>
+            <ul id="menuContainer" className='uppercase mt-4 h-7'>
                 <li className='hidden'>
                     <NavButton onclick={DropdownClick} className='text-white'>{DOWN_SYMBOL}</NavButton>
                 </li>
                 {
                     pages.map((page, index) => {
-                        if (page == pageOpened) {
+                        if (window.location.pathname.includes(page)) {
                             switch (page) {
                                 case 'games':
                                     root.style.setProperty('--arrow-position', '28%')

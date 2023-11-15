@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     const themecolor = localStorage.getItem('ThemeColor')
 
     if (themecolor) {
-      setTheme(themecolor)
+      setTheme('DarkMode')
     }
   }, [theme])
 

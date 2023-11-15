@@ -1,29 +1,27 @@
 import { useRef } from 'react'
 
 export default function ContactSlot({ children, info, bgcolor, className }: ContactSlot) {
-  const tooltip = useRef<HTMLDivElement>(null)
+  const coverIcon = useRef<HTMLDivElement>(null)
 
-  function OnMouseEnter() {
-    if (tooltip.current) {
-      const RealTooltip = tooltip.current
+  function OnMouseMove() {
+    if (coverIcon.current) {
+      const tooltip = coverIcon.current
+      
+      if (!tooltip.classList.contains('GetIn')) {
+        tooltip.classList.add('GetIn')
+      }
 
-      if (!RealTooltip.classList.contains('GetIn')) RealTooltip.classList.add('GetIn')
-    }
-  }
-
-  function OnMouseLeave() {
-    if (tooltip.current) {
-      const RealTooltip = tooltip.current
-
-      if (RealTooltip.classList.contains('GetIn')) RealTooltip.classList.remove('GetIn')
+      else {
+        tooltip.classList.remove('GetIn')
+      }
     }
   }
 
   return (
-    <div onMouseEnter={OnMouseEnter} onMouseLeave={OnMouseLeave}
+    <div onMouseEnter={OnMouseMove} onMouseLeave={OnMouseMove}
       style={{ '--logo-color': bgcolor } as React.CSSProperties} className={'Contact ' + ((className) ? className : '')}
     >
-      <div ref={tooltip} className='round-icon'>{children}</div>
+      <div ref={coverIcon} className='round-icon'>{children}</div>
       <div className='p-2'>{info}</div>
     </div>
   );

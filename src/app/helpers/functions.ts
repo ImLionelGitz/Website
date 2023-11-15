@@ -16,22 +16,6 @@ export async function GetThumbnail() {
   return thumbnail_url as string
 }
 
-export class SharedDataHolder {
-  private static sharedData: Record<string, string> = {}
-
-  public static AddData(key: string, value: string) {
-    if (!this.sharedData[key]) this.sharedData[key] = value
-  }
-
-  public static ClearData() {
-    this.sharedData = {}
-  }
-
-  public static GetData() {
-    return this.sharedData
-  }
-}
-
 export function SetCache(key: string, data: any) {
   const cache = {
     data: data,

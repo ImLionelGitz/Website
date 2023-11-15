@@ -1,22 +1,21 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faYoutube, faTwitter, faInstagram, faTiktok, faDeviantart, faPatreon } from "@fortawesome/free-brands-svg-icons";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
-
 import MediaBtn from '@/app/widgets/Button'
 
 export default function Footer({ className }: Footer) {
-    const icons = [faYoutube, faTwitter, faTiktok, faInstagram, faDeviantart, faPatreon, faLink],
-        links = [
-            'https://www.youtube.com/@LionelLeoPlayz',
-            'https://twitter.com/LionelLeoGFX',
-            'https://www.tiktok.com/@lionelleoplayz',
-            'https://www.instagram.com/lionelleoplay.z',
-            'https://www.deviantart.com/timmystudios',
-            'https://www.patreon.com/LionelLeoPlayz',
-            'https://www.roblox.com/groups/4708773/Liger'
-        ],
-        mySite = 'https://github.com/ImLionelGitz/My-Site'
+    const icons = [faYoutube, faTwitter, faTiktok, faInstagram, faDeviantart, faPatreon, faLink]
+    const mySite = 'https://github.com/ImLionelGitz/My-Site'
     const date = new Date()
+    const links = [
+        'https://www.youtube.com/@LionelLeoPlayz',
+        'https://twitter.com/LionelLeoGFX',
+        'https://www.tiktok.com/@lionelleoplayz',
+        'https://www.instagram.com/lionelleoplay.z',
+        'https://www.deviantart.com/timmystudios',
+        'https://www.patreon.com/LionelLeoPlayz',
+        'https://www.roblox.com/groups/4708773/Liger'
+    ]
 
     return (
         <div className={"Footer uppercase text-white" + ((className) ? ` ${className}` : '')}>

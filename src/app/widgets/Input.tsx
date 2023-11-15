@@ -1,15 +1,5 @@
-/**
- * Create an input element that is either Toggle Buttons, Radio Buttons, Checkboxes and Text Inputs (2 versions). **Ignore the children param!**
- * @param type The type of input (Limited to `TOGGLE`, `CHECKBOX` and `RADIO`. To use Text, keep this param blank)
- * @param alt_text Use the second version of text input (**Only works if the input type is text!**)
- * @param width Width of the text input (default 100)
- * @param height Height of the text input (default 20)
- * @param onchange A callback if text change is detected (**text input only!**)
- * @emits CustomEvent called `on_check` with a `source` and a `value`
- */
-
-export default function Input({ children, type, alt_text, width, height, onchange, className }: LInput) {
-    if (type == 'CHECKBOX' || type == 'RADIO' || type == 'TOGGLE') {
+export default function Input({ children, type, onchange, className }: LInput) {
+    if (['CHECKBOX', 'RADIO', 'TOGGLE'].includes(type)) {
         const chosenInpType = type.toLowerCase()
 
         const inpType = (type == 'TOGGLE') ? 'checkbox' : chosenInpType
@@ -29,18 +19,4 @@ export default function Input({ children, type, alt_text, width, height, onchang
             </label>
         )
     }
-
-    const absWidth = (width && width > 0) ? width : 100
-    const absHeight = (height && height > 0) ? height : 20
-    const altInput = "border-2 p-2 outline-none rounded border-white bg-transparent"
-
-    if (alt_text) return (
-        <input className={altInput + ' ' + ((className) ? className : '')} type="text" placeholder={children}
-            style={{ width: absWidth + 'px', height: absHeight + 'px' }} onChange={onchange} />
-    )
-
-    return (
-        <textarea className={"TextInput" + ' ' + ((className) ? className : '')} placeholder={children}
-            cols={30} rows={10} style={{ width: absWidth + 'px', height: absHeight + 'px' }}></textarea>
-    )
 }

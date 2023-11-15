@@ -36,7 +36,7 @@ interface Lbutton {
 
 interface LInput {
     children: any
-    type?: keyof InputTypes
+    type: keyof InputTypes
     alt_text?: boolean
     width?: number
     height?: number
@@ -48,8 +48,8 @@ interface GCard {
     icon: string
     title: string
     platforms: Array<keyof PlatformsTypes>
-    links: string[]
-    openPopup: (open: boolean) => void
+    links: Array<string>
+    onSlotClick: (platforms: Array<keyof PlatformsTypes>, links: Array<string> ) => void
     className?: string
 }
 
@@ -85,10 +85,9 @@ interface LHeader {
 }
 
 interface Popup {
-    Content: JSX.Element[],
-    Open: boolean
+    Content: any
+    onClose: (event: any) => void
     Type: keyof PopupTypes
-    OpenerFunction?: any
     className?: string
 }
 
