@@ -1,8 +1,8 @@
-export default function GDriveLoader({ src }: GDriveLoader) {
+export default function cloudinaryLoader({ src }: GDriveLoader) {
   try {
     return new URL(src).href
   }
   catch(e) {
-    return `https://drive.google.com/uc?id=${src}`
+    return `https://res.cloudinary.com/dtcignhud/image/upload/v1700095152/${src}.webp`
   }
 }

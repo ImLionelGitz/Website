@@ -3,12 +3,19 @@ import LightModeToggle from '@/app/widgets/Input'
 import NavButton from '@/app/widgets/Button'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
-import { DOWN_SYMBOL, Images, UP_SYMBOL } from "../helpers/variables";
+import { DOWN_SYMBOL, UP_SYMBOL } from "../helpers/variables";
+import { useEffect } from "react";
 
 const root = document.body
 const pages = ['games', 'videos', 'portfolio', 'contact']
 
 export default function NavBar() {
+    useEffect(() => {
+        if (localStorage.getItem('ThemeColor')) {
+            root.classList.replace('LightMode', 'DarkMode')
+        }
+    }, [])
+
     function DropdownClick(e: any) {
         const btn = e.target as HTMLButtonElement
         const parent = btn.parentElement as HTMLLIElement
@@ -42,7 +49,7 @@ export default function NavBar() {
     return (
         <div className="Navigation p-1">
             <a href="/">
-                <Image alt="logo" src={Images.LOGO} width={200} height={200} />
+                <Image alt="logo" src='logo' width={200} height={200} />
             </a>
 
             <ul id="menuContainer" className='uppercase mt-4 h-7'>

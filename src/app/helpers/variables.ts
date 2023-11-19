@@ -16,12 +16,4 @@ GameDB = 'https://raw.githubusercontent.com/ImLionelGitz/AppsDatabase/main/apps.
 const API_KEY = 'AIzaSyCdAnfphtGMzXucjJW9ibEXgE8wTzE6axs',
 CHANNEL_ID = 'UCPijoO9BXpKQdoPCRHYw5RA'
 
-const Images = {
-    GAMING: '1A60uvg44vpOy9EHJ34M3hfqrl_HvAuX6',
-    VIDEO: '1dRnAtXMLKjIsgI7VjWTncGqIBAmJug00',
-    QR: '1H1sKalHqPhpGictzzWcn-_ZWgwBeVzeF',
-    LOGO: '1kcSCwxD763ZdLrDUjtC2OjUCaYCEFyuc',
-    CONTACT: '15m73r8KQoBX1QnImYr_GY85BzPvHqEZf'
-}
-
-export { DOWN_SYMBOL, UP_SYMBOL, Platforms, API_KEY, CHANNEL_ID, CACHE_VADLIDITY, VideoDB, GameDB, Images }
+export { DOWN_SYMBOL, UP_SYMBOL, Platforms, API_KEY, CHANNEL_ID, CACHE_VADLIDITY, VideoDB, GameDB }
