@@ -22,11 +22,13 @@ export default function Footer({ className }: Footer) {
             © 2020 - {date.getFullYear()}. all rights reserved for logos & images. <br />
             <span className='text-base'>templates & designs are <MediaBtn target='_blank' className='hover:text-emerald-500' href={mySite}>open source</MediaBtn>.</span>
 
-            <div className='p-2'>
+            <div className='p-2 overflow-hidden h-12'>
                 {
                     icons.map((icon, index) => {
                         return (
-                            <MediaBtn key={index} href={links[index]} target='_blank' className='m-2 text-2xl hover:text-emerald-500'>
+                            <MediaBtn key={index} href={links[index]} target='_blank'
+                            className='m-2 text-2xl hover:text-emerald-500 w-8 h-8 inline-block'
+                            >
                                 <FontAwesomeIcon icon={icon} />
                             </MediaBtn>
                         )

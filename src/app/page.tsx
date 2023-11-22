@@ -3,7 +3,6 @@
 import dynamic from "next/dynamic"
 import Footer from "./ui/FooterBar"
 import GSlot from "./widgets/Gameslot"
-import Main from "./widgets/Main"
 import VCard from "./widgets/Videocard"
 
 import { useEffect, useState } from 'react'
@@ -69,11 +68,11 @@ export default function Home() {
   }
 
   if (Database) return (
-    <Main className='overflow-x-hidden min-h-screen flex flex-col'>
+    <div className='overflow-x-hidden min-h-screen flex flex-col'>
       <NavBar />
       <Picture ytThumb imgPath="" />
 
-      <div className='text-center mt-5 font-bold text-2xl'>
+      <div className='text-center pt-5 font-bold text-2xl' style={{ background: 'var(--lower-color)' }}>
         <h1>Explore These Random Games!</h1>
 
         <div className='flex flex-wrap justify-center'>
@@ -88,7 +87,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className='text-center my-4'>
+      <div className='text-center py-4' style={{ background: 'var(--lower-color)' }}>
         <h1 className="font-bold text-2xl mb-6">
           Tune In For Fresh Content! (Maybe)
         </h1>
@@ -100,6 +99,6 @@ export default function Home() {
       </div>
       {popupUI && popupUI}
       <Footer className='flex flex-col justify-evenly flex-1' />
-    </Main>
+    </div>
   )
 }

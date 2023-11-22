@@ -1,7 +1,6 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import Main from '../widgets/Main'
 import Picture from '../ui/Picture'
 import Footer from '../ui/FooterBar'
 import ContactSlot from '../widgets/ContactSlot'
@@ -20,11 +19,13 @@ export default function Contact() {
         'E-Mail': { info: 'lionelleoplayz@gmail.com', bgcolor: '#e22638', icon: faEnvelope }
     }
     return (
-        <Main className='overflow-x-hidden flex flex-col min-h-screen'>
+        <div className='overflow-x-hidden flex flex-col min-h-screen'>
             <NavBar />
             <Picture imgPath='contact' />
 
-            <div className='flex justify-center items-center flex-col text-2xl font-bold flex-1'>
+            <div className='flex justify-center items-center flex-col text-2xl font-bold flex-1'
+            style={{ background: 'var(--lower-color)' }}
+            >
                 {
                     Object.keys(contacts).map((token, index) => {
                         const contactInfo = contacts[token]
@@ -38,6 +39,6 @@ export default function Contact() {
                 }
             </div>
             <Footer />
-        </Main>
+        </div>
     )
 }

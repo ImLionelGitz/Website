@@ -29,7 +29,7 @@ $BtnThemeClick: #047857;
 
 body {
   box-sizing: border-box;
-  background: var(--lower-color);
+  background: var(--higher-color);
   color: var(--text-color);
   transition: .2s ease;
 }
@@ -425,7 +425,6 @@ body {
 // Ui components
 
 .Navigation {
-  background: var(--higher-color);
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -446,7 +445,6 @@ body {
 
 .Footer {
   text-align: center;
-  background: var(--higher-color);
   padding: 8px;
   font-size: 20px;
 }

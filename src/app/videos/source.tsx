@@ -3,7 +3,6 @@
 import dynamic from "next/dynamic"
 import Picture from "../ui/Picture"
 import Button from "../widgets/Button"
-import Main from "../widgets/Main"
 import Footer from "../ui/FooterBar"
 import VCard from "../widgets/Videocard"
 import { useState, useEffect, useRef } from "react"
@@ -68,12 +67,12 @@ export default function Videos() {
     }
 
     if (Videos) return (
-        <Main className='overflow-x-hidden'>
+        <div className='overflow-x-hidden'>
             <NavBar />
             <Picture imgPath='video' className='h-96' />
 
-            <div className='text-center text-2xl font-bold'>
-                <div className='mt-3'>
+            <div className='text-center text-2xl font-bold' style={{ background: 'var(--lower-color)' }}>
+                <div className='pt-3'>
                     <h1 className="inline">Videos</h1>
                     <Button onclick={OnClick} className="absolute right-0 mr-4">
                         <FontAwesomeIcon icon={faFilter} />
@@ -95,6 +94,6 @@ export default function Videos() {
             </div>
             {PopupUI && PopupUI}
             <Footer />
-        </Main>
+        </div>
     )
 }

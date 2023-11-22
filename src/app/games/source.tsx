@@ -4,11 +4,9 @@ import dynamic from "next/dynamic"
 import { useState, useEffect } from 'react'
 import Picture from "../ui/Picture"
 import GSlot from "../widgets/Gameslot"
-import Main from "../widgets/Main"
 import Footer from "../ui/FooterBar"
 import { GameDB } from "../helpers/variables"
-
-const NavBar = dynamic(() => import('@/app/ui/NavBar'), { ssr: false })
+import NavBar from "../ui/NavBar"
 
 let PlatformsAvailable: Record<string, string> = {}
 
@@ -46,12 +44,12 @@ export default function Games() {
     }
 
     if (DatabaseCache) return (
-        <Main className='min-h-screen flex flex-col'>
+        <div className='min-h-screen flex flex-col'>
             <NavBar />
             <Picture imgPath='gaming' className='h-64' />
 
-            <div className='text-center text-2xl font-bold'>
-                <div className='mt-3'>
+            <div className='text-center text-2xl font-bold' style={{ background: 'var(--lower-color)' }}>
+                <div className='pt-3'>
                     <h1 className="inline">Games</h1>
                 </div>
 
@@ -71,6 +69,6 @@ export default function Games() {
 
             { PopupUI && PopupUI }
             <Footer className='flex flex-col justify-evenly flex-1' />
-        </Main>
+        </div>
     )
 }
