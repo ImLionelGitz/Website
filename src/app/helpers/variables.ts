@@ -13,7 +13,7 @@ const Platforms = {
 const VideoDB = 'https://raw.githubusercontent.com/ImLionelGitz/AppsDatabase/main/videos.json',
 GameDB = 'https://raw.githubusercontent.com/ImLionelGitz/AppsDatabase/main/apps.json'
 
-const API_KEY = 'AIzaSyCdAnfphtGMzXucjJW9ibEXgE8wTzE6axs',
+const API_KEY = process.env.API_KEY,
 CHANNEL_ID = 'UCPijoO9BXpKQdoPCRHYw5RA'
 
 export { DOWN_SYMBOL, UP_SYMBOL, Platforms, API_KEY, CHANNEL_ID, CACHE_VADLIDITY, VideoDB, GameDB }
