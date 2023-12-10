@@ -69,6 +69,9 @@ export default function Games() {
 
             { PopupUI && PopupUI }
             <Footer className='flex flex-col justify-evenly flex-1' />
+
+            <style>{`.GSlot{position:relative;width:250px;height:345px;border-radius:6px;overflow:hidden;background:#047857;display:flex;align-items:flex-end;justify-content:space-around;box-shadow:5px 3px 20px var(--shadow-color)}.GSlot img{transition:0.2s linear}.GSlot h3{position:absolute;transition:0.1s ease;background:linear-gradient(360deg,black,transparent);color:white;font-size:20px;height:0;width:inherit}.GSlot:hover img{transform:scale(1.05)}.GSlot:hover h3{height:77px}
+            `}</style>
         </div>
     )
 }

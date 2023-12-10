@@ -25,7 +25,7 @@ export default function Picture({ ytThumb, imgPath, className }: LHeader) {
     }, [ytThumb])
 
     return (
-        <div className={((ytThumb) ? 'Picture headerEng' : 'Picture') + ((className) ? ` ${className}` : '')}>
+        <div className={'Picture' + ((className) ? ` ${className}` : '')}>
             {
                 ytThumb &&
 

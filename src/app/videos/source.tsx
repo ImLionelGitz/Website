@@ -2,7 +2,6 @@
 
 import dynamic from "next/dynamic"
 import Picture from "../ui/Picture"
-import Button from "../widgets/Button"
 import Footer from "../ui/FooterBar"
 import VCard from "../widgets/Videocard"
 import { useState, useEffect, useRef } from "react"
@@ -10,8 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFilter } from "@fortawesome/free-solid-svg-icons"
 import Input from "../widgets/Input"
 import { VideoDB } from "../helpers/variables"
-
-const NavBar = dynamic(() => import('@/app/ui/NavBar'), { ssr: false })
+import NavBar from "../ui/NavBar"
 
 let previousChkBox: HTMLInputElement
 
@@ -74,9 +72,9 @@ export default function Videos() {
             <div className='text-center text-2xl font-bold' style={{ background: 'var(--lower-color)' }}>
                 <div className='pt-3'>
                     <h1 className="inline">Videos</h1>
-                    <Button onclick={OnClick} className="absolute right-0 mr-4">
+                    <button onClick={OnClick} className="absolute right-0 mr-4">
                         <FontAwesomeIcon icon={faFilter} />
-                    </Button>
+                    </button>
                 </div>
 
                 <div ref={listRef} className='flex flex-wrap justify-center'>
@@ -94,6 +92,9 @@ export default function Videos() {
             </div>
             {PopupUI && PopupUI}
             <Footer />
+
+            <style>{`.VCard {display: inline-flex;flex-direction: column;align-items: center;font-size: 20px;transition: 0.2s ease-in;}.VCard .container {position: relative;width: 345px;height: 245px;overflow: hidden;}.VCard .container img {max-width: 345px;max-height: 245px;transition: 0.2s linear;}.VCard .container img:hover {transform: scale(1.03);}.VCard .container .Shadow {position: absolute;background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.0));right: 0;left: 0;bottom: 0;height: 50%;pointer-events: none;}.VCard:hover {color: #047857;}
+            `}</style>
         </div>
     )
 }

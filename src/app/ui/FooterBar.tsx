@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faYoutube, faTwitter, faInstagram, faTiktok, faDeviantart, faPatreon } from "@fortawesome/free-brands-svg-icons";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
-import MediaBtn from '@/app/widgets/Button'
+import Link from "next/link";
 
 export default function Footer({ className }: Footer) {
     const icons = [faYoutube, faTwitter, faTiktok, faInstagram, faDeviantart, faPatreon, faLink]
@@ -20,17 +20,17 @@ export default function Footer({ className }: Footer) {
     return (
         <div className={"Footer uppercase text-white" + ((className) ? ` ${className}` : '')}>
             © 2020 - {date.getFullYear()}. all rights reserved for logos & images. <br />
-            <span className='text-base'>templates & designs are <MediaBtn target='_blank' className='hover:text-emerald-500' href={mySite}>open source</MediaBtn>.</span>
+            <span className='text-base'>templates & designs are <Link target='_blank' className='hover:text-emerald-500' href={mySite}>open source</Link>.</span>
 
             <div className='p-2 overflow-hidden h-12'>
                 {
                     icons.map((icon, index) => {
                         return (
-                            <MediaBtn key={index} href={links[index]} target='_blank'
+                            <Link key={index} href={links[index]} target='_blank'
                             className='m-2 text-2xl hover:text-emerald-500 w-8 h-8 inline-block'
                             >
                                 <FontAwesomeIcon icon={icon} />
-                            </MediaBtn>
+                            </Link>
                         )
                     })
                 }

@@ -1,15 +1,12 @@
 'use client'
 
-import dynamic from 'next/dynamic'
 import Picture from '../ui/Picture'
 import Footer from '../ui/FooterBar'
 import ContactSlot from '../widgets/ContactSlot'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDiscord, faSkype, faTelegram } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
-
-const NavBar = dynamic(() => import('@/app/ui/NavBar'), { ssr: false })
-
+import NavBar from '../ui/NavBar'
 
 export default function Contact() {
     const contacts: Record<string, any> = {
@@ -39,6 +36,9 @@ export default function Contact() {
                 }
             </div>
             <Footer />
+
+            <style>{`.Contact {position: relative;overflow: hidden;border-radius: 8px;border: 2px solid var(--logo-color);}.Contact .round-icon {position: absolute;display: flex;color: white;justify-content: center;align-items: center;background-color: var(--logo-color);width: 100%;height: 100%;transition: 0.2s ease;overflow: hidden;}
+            `}</style>
         </div>
     )
 }
