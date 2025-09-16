@@ -1,8 +1,5 @@
-import './globals.scss'
-import { Nunito } from 'next/font/google'
+import './styles/globals.scss'
 import type { Metadata } from 'next'
-
-const inter = Nunito({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://liger.netlify.app/'),
@@ -19,7 +16,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">      
-      <body className={inter.className + ' LightMode'}>{children}</body>
+      <body className="lightMode">{children}</body>
     </html>
   )
 }

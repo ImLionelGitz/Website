@@ -33,3 +33,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Ignore all SCSS/CSS typings
+*.scss.d.ts
+*.css.d.ts

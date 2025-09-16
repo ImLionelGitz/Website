@@ -1,0 +1,119 @@
+.gameCard {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    border-radius: 8px;
+    width: 187px;
+    cursor: pointer;
+    overflow: hidden;
+    color: #eee;
+
+    animation-name: var(--anim);
+    animation-duration: 0.5s;
+    animation-timing-function: ease;
+
+    --text-pos: 100%;
+    --img-scale: 1;
+
+    img {
+        width: inherit;
+        transition: transform 0.5s cubic-bezier(0.84, 0.07, 0.15, 0.77);
+        transform: scale(var(--img-scale));
+    }
+
+    h2 {
+        line-height: 1.2;
+        font-weight: 600;
+        font-size: 18px;
+        margin-top: 1.2rem;
+        position: absolute;
+        padding: 7px;
+        background: linear-gradient(360deg, #000, transparent);
+        transform: translateY(var(--text-pos));
+        transition: transform 0.5s cubic-bezier(0.75, -0.01, 0.6, 0.99);
+    }
+
+    &:hover {
+        //transform: scale(1.1);
+        --img-scale: 1.1;
+        --text-pos: 0%;
+    }
+}
+
+.dropDown {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    label {
+        font-size: 14px;
+    }
+
+    &Selector {
+        position: relative;
+
+        select {
+            width: 100%;
+            padding: 12px 40px 12px 12px;
+            background: transparent;
+            border: 1px solid #555;
+            border-radius: 4px;
+            font-size: 16px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+
+            &:focus {
+                outline: none;
+                border-color: #888;
+            }
+        }
+
+        &::after {
+            content: "▼";
+            font-size: 12px;
+            color: #ccc;
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+    }
+}
+
+.videoCard {
+    overflow: hidden;
+    margin: 12px;
+    width: 300px;
+
+    h2 {
+        background: aliceblue;
+        border: 3px solid #047857;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 9px;
+        animation-name: var(--anim);
+        animation-duration: 0.5s;
+        animation-timing-function: ease;
+    }
+}
+
+.reviewsCard {
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    border: 2px solid;
+
+    &Inner {
+        display: flex;
+        align-items: center;
+        background: white;
+        border: 2px solid;
+    }
+}

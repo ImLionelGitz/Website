@@ -1,11 +1,15 @@
-import Contact from "./source";
-import type { Metadata } from 'next'
+import ContactBar from "@/app/ui/structs/contact/ContactBar";
+import FooterBar from "@/app/ui/structs/FooterBar";
+import NavBar from "@/app/ui/structs/NavBar";
 
-export const metadata: Metadata = {
-    title: 'Want More Info? - Liger',
-    robots: { index: false, follow: false }
-}
+export default function ContactPage() {
+    return (
+        <main>
+            <NavBar />
 
-export default function Page() {
-    return <div><Contact /></div>
+            <ContactBar />
+
+            <FooterBar />
+        </main>
+    )
 }

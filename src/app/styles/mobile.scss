@@ -1,0 +1,72 @@
+@media only screen and (max-width: 480px) {
+  // Vitial Components
+
+  .Contact {
+    transform: scale(0.8);
+    margin: 0;
+  }
+
+  // Ui components
+
+  .Navigation {
+    .active {
+      ::after {
+        display: none;
+      }
+
+      color: #10b981;
+    }
+
+    .highten {
+      height: 11rem;
+    }
+
+    ul {
+      overflow: hidden;
+      display: grid;
+      justify-items: center;
+      transition: .2s cubic-bezier(0, 0.22, 0.41, 1);
+
+      .hidden {
+        display: block;
+      }
+
+      li {
+        margin: 4px;
+
+        &::before {
+          display: none;
+        }
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .Footer {
+    font-size: 16px;
+
+    .text-base {
+      font-size: 12px;
+    }
+  }
+
+  .Picture {
+    justify-content: center;
+    align-items: flex-end;
+    height: auto;
+
+    h1 {
+      font-size: 15px;
+      margin-left: 0;
+      margin-bottom: 8px;
+    }
+
+    div {
+      background: linear-gradient(360deg, rgba(0, 0, 0, 0.42), transparent);
+      width: auto;
+    }
+  }
+}

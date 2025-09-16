@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Image from "next/image";
-import { Platforms } from '../helpers/variables';
+import { Platforms } from '../../helpers/variables';
 import Link from 'next/link';
 
 export default function Popup({ Type, Content, onClose, className }: Popup) {

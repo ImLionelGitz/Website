@@ -1,0 +1,43 @@
+.lightMode {
+  //--theme-color: #047857;
+  color: #323232;
+
+  --body-color1: #eee;
+  --body-color2: #dedbdb;
+}
+
+.darkMode {
+  color: #f9f9f9;
+
+  --body-color1: #323232;
+  --body-color2: #636363;
+}
+
+.sectionTear {
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 99%;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: inherit;
+
+    mask: url("/section_tear.png") no-repeat;
+    mask-size: cover;
+    pointer-events: none;
+  }
+}
+
+// .active {
+//   &::after {
+//     border: 14px solid transparent;
+//     border-top-color: #047857;
+//     content: " ";
+//     transform: translateX(-50%);
+//     pointer-events: none;
+//     position: absolute;
+//     top: 100%;
+//     left: 66%;
+//   }
+// }

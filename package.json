@@ -6,13 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "scss": "typed-scss-modules src/app/styles/components/*.module.scss --watch"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.4.2",
-    "@fortawesome/free-brands-svg-icons": "^6.4.2",
-    "@fortawesome/free-solid-svg-icons": "^6.4.2",
-    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-regular-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@types/node": "20.6.1",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
@@ -20,7 +22,9 @@
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
     "googleapis": "^126.0.1",
-    "next": "13.4.19",
+    "keen-slider": "^6.8.6",
+    "lucide-react": "^0.512.0",
+    "next": "^15.3.3",
     "postcss": "8.4.29",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -28,6 +32,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
-    "sass": "^1.67.0"
+    "sass": "^1.67.0",
+    "typed-scss-modules": "^8.1.1"
   }
 }

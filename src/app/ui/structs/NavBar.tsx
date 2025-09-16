@@ -1,14 +1,15 @@
 'use client'
 
 import Image from "next/image";
-import LightModeToggle from '@/app/widgets/Input'
+import LightModeToggle from '@/app/ui/widgets/Input'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
-import { DOWN_SYMBOL, UP_SYMBOL } from "../helpers/variables";
+import { DOWN_SYMBOL, UP_SYMBOL } from "../../helpers/variables";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import struct from "@/app/styles/components/struct.module.scss"
 
-const pages = ['games', 'videos', 'portfolio', 'contact']
+const pages = ['apps', 'videos', 'portfolio', 'contact']
 
 export default function NavBar() {
     const [onPage, setOnPage] = useState('')
@@ -74,20 +75,20 @@ export default function NavBar() {
     }
 
     return (
-        <div className="Navigation p-1">
+        <div className={`${struct.navBar} p-1`}>
             <a href="/" style={{ minWidth: '200px', minHeight: '62px' }}>
-                <Image alt="logo" src='logo' width={200} height={62} />
+                <Image alt="logo" src='/logo.webp' width={200} height={62} />
             </a>
 
             <ul id="menuContainer" className='uppercase mt-4 h-7'>
-                <li className='hidden'>
+                {/* <li className='hidden'>
                     <button onClick={DropdownClick} className='text-white'>{DOWN_SYMBOL}</button>
-                </li>
+                </li> */}
                 {
                     pages.map((page, index) => {
                         if (page === onPage) {
                             return (
-                                <li key={index} className="active pointer-events-none text-emerald-500">
+                                <li key={index} className="pointer-events-none text-emerald-500">
                                     <Link href={`/${page}`}>{page}</Link>
                                 </li>
                             )
@@ -111,3 +112,39 @@ export default function NavBar() {
         </div>
     )
 }
+
+
+
+// 'use client'
+
+// import Image from "next/image";
+// import Link from "next/link";
+// import { usePathname } from "next/navigation";
+// import uis from "@/app/styles/ui.module.scss"
+
+// const pages = ['Apps', 'Videos', 'Portfolio', 'Contact']
+
+// export default function NavigationBar() {
+//     const pathName = usePathname()
+
+//     return (
+//         <div className={uis.navBar}>
+//             <div>
+//                 {
+//                     pages.map((page, index) => <Link key={index} href={""}>{page}</Link>)
+//                 }
+//             </div>
+
+//             <div>
+//                 <Image src="/logo.png" alt="Description of the image" width={100} height={100} />
+//                 <h1>Creations</h1>
+//             </div>
+//         </div>
+//         // <div className="letter">
+//         //     <p>Creating a messy stack of papers using the magic of CSS transforms and generated content.</p>
+
+//         //     <p>Forked from [Michael Martin-Smucker](https://codepen.io/mlms13/)</p> <p>Pen [CSS Stacked Paper Effect](https://codepen.io/mlms13/pen/LKFoy/).</p>
+//         //     <h3>[HOVER ME]</h3>
+//         // </div>
+//     )
+// }

@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./mobile.scss";
+@import "./effects.scss";
+@import "./anims.scss";
+
+
+@font-face {
+  font-family: "Cinzel";
+  src: url("/fonts/Cinzel-Medium.woff");
+}
+
+@font-face {
+  font-family: "IM-Fell-English";
+  src: url("/fonts/IMFellEnglish-Regular.woff");
+}
+
+body {
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+h1,
+h2 {
+  font-family: "Cinzel";
+}
+
+p,
+a,
+span {
+  font-family: "IM-Fell-English";
+}
