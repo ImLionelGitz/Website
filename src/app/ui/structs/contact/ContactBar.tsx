@@ -57,7 +57,7 @@ export default function ContactBar() {
                             value={form.name}
                             onChange={handleChange}
                             required
-                            className="w-full p-2 rounded"
+                            className="w-full p-2 rounded border-[1px] border-solid border-black"
                         />
 
                         <DropDown
@@ -74,7 +74,7 @@ export default function ContactBar() {
                             value={form.email}
                             onChange={handleChange}
                             required
-                            className="w-full p-2 rounded"
+                            className="w-full p-2 rounded border-[1px] border-solid border-black"
                         />
 
                         <textarea
@@ -83,12 +83,10 @@ export default function ContactBar() {
                             value={form.message}
                             onChange={handleChange}
                             required
-                            className="w-full h-32 p-2 rounded"
+                            className="w-full h-32 p-2 rounded border-[1px] border-solid border-black"
                         />
 
-                        <button className={`${structs.contactFormSend} z-20 relative`}
-                            style={{ padding: "6px 12px" }}>Send</button>
-
+                        <button className={`${structs.contactFormSend} z-20 relative`}>Send</button>
                         <p>{status}</p>
                     </form>
 
