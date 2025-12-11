@@ -1,0 +1,15 @@
+.Button {
+    background-image: url("/Button.png");
+    background-repeat: round;
+    border: 0;
+    padding: 7px 40px;
+    border-radius: 10px;
+
+    &:hover {
+        filter: brightness(0.8);
+    }
+
+    &:active {
+        filter: brightness(1.23);
+    }
+}

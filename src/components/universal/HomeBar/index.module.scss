@@ -1,0 +1,14 @@
+.HomeBar {
+    .Bar {
+        background-image: url("/navbar.png");
+        background-repeat: round;
+        width: 100vw;
+        height: 25px;
+        z-index: 2;
+        position: relative;
+    }
+
+    img {
+        width: 8%;
+    }
+}

@@ -1,0 +1,91 @@
+$color-purple: #047857;
+$color-pink: #047857;
+$color-gray: #9CA3AF;
+$color-black: #1F2937;
+$card-size: 23rem;
+
+
+.carousel {
+    width: 23rem;
+    height: 23rem;
+    position: relative;
+
+    .container {
+        perspective: 500px;
+        transform-style: preserve-3d;
+        position: relative;
+        height: 100%;
+
+        .cardContainer {
+            position: absolute;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            transform:
+                rotateY(calc(var(--offset) * 50deg)) scaleY(calc(1 + var(--abs-offset) * -0.4)) translateZ(calc(var(--abs-offset) * -30rem)) translateX(calc(var(--direction) * -5rem));
+
+            filter: blur(calc(var(--abs-offset) * 1rem));
+            transition: all 0.3s ease-out;
+        }
+    }
+
+    .nav {
+        color: white;
+        font-size: 5rem;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 50%;
+        z-index: 2;
+        cursor: pointer;
+        user-select: none;
+        background: unset;
+        border: unset;
+
+        &.left {
+            transform: translateX(-100%) translatey(-50%);
+        }
+
+        &.right {
+            right: 0;
+            transform: translateX(100%) translatey(-50%);
+        }
+    }
+}
+
+.card {
+    width: 100%;
+    height: 75%;
+    padding: 1rem;
+    background-color: hsl(118deg, 40%, calc(100% - var(--abs-offset) * 50%));
+    border-radius: 1rem;
+    color: $color-gray;
+    text-align: justify;
+    transition: all 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .Quote {
+        font-size: 29px;
+        position: absolute;
+        left: 0;
+        margin: 16px;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 0 0 0.7em;
+        color: $color-black;
+    }
+
+    p,
+    h2 {
+        transition: all 0.3s ease-out;
+        opacity: var(--active);
+        text-align: center;
+    }
+}

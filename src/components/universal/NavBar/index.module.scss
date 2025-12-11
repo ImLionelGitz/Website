@@ -1,0 +1,29 @@
+.Navbar {
+    transform: scale(1.2);
+
+    .Bar {
+        background-image: url('/navbar.png');
+        background-repeat: round;
+        width: 100vw;
+        height: 38px;
+    }
+
+    .NavContent {
+        margin-top: 8px;
+        display: flex;
+        align-items: center;
+        transform: scaleX(52.5%);
+
+        a,
+        span {
+            font-weight: bold;
+            font-size: 18px;
+            text-decoration: none;
+            color: #686767;
+        }
+
+        a:hover, .active {
+            color: var(--theme-color);
+        }
+    }
+}

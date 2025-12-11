@@ -1,0 +1,48 @@
+.WorksCard {
+    background-image: url("/card.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 14rem;
+    height: 18rem;
+    display: inline-flex;
+    user-select: none;
+    color: black;
+
+    .Icon {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 129px;
+        height: 75px;
+        /* transform: translate(-3px, -43px); */
+        top: 23%;
+        left: 20%;
+        position: absolute;
+    }
+
+    .Title {
+        font-size: 15px;
+        font-weight: bold;
+        position: absolute;
+        top: 63%;
+        left: 31%;
+        text-align: center;
+        width: 74px;
+    }
+
+    .Descript {
+        text-align: center;
+        width: 130px;
+        font-size: 11px;
+        /* transform: translate(-2px, -9px); */
+        position: absolute;
+        top: 79%;
+    }
+
+    p {
+        margin: 0;
+    }
+}

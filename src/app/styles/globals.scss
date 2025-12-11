@@ -1,0 +1,36 @@
+@import './variables.scss';
+@import './effects.scss';
+
+
+@font-face {
+  font-family: 'Cinzel';
+  src: url('/fonts/Cinzel-Medium.woff');
+}
+
+@font-face {
+  font-family: 'Im-English';
+  src: url('/fonts/IMFellEnglish-Regular.woff');
+}
+
+
+body {
+  box-sizing: border-box;
+  background: #000 radial-gradient(#094a2c, #0000);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Cinzel';
+}
+
+a,
+p,
+i,
+span,
+button {
+  font-family: 'Im-English';
+}
