@@ -1,15 +1,12 @@
-import HomeBar from '@/components/universal/HomeBar'
-import NavBar from '@/components/universal/NavBar'
 import WorksCard from '@/components/homepage/WorksCard'
-import Button from '@/components/universal/Button'
-import Banner from '@/components/universal/Banner'
-import Gallery from '@/components/homepage/ReviewGallery'
-import Footer from '@/components/universal/Footer'
+import Footer from '@/components/universal/high_levels/Footer'
+import Button from '@/components/universal/low_levels/Button'
 
-import style from './page.module.scss'
 import CardStack from '@/components/homepage/CardStack'
 import NewsCard from '@/components/homepage/NewsCard'
 import ReviewGallery from '@/components/homepage/ReviewGallery'
+import style from './page.module.scss'
+import Header from '@/components/universal/high_levels/Header'
 
 const data: review[] = [
    {
@@ -37,15 +34,7 @@ const data: review[] = [
 export default function Home() {
    return (
       <main>
-         <section style={{ overflowX: 'clip' }}>
-            <HomeBar />
-
-            <div className={style.Banner}>
-               <Banner image="/castle.png" content="lololololol" />
-            </div>
-
-            <NavBar />
-         </section>
+         <Header imageUrl="/castle.png" text="lololololol" />
 
          <section className={style.WorksSection}>
             <div className={style.Text}>

@@ -1,6 +1,6 @@
 'use client'
 
-import Dropdown from '@/components/universal/Dropdown'
+import Dropdown from '@/components/universal/low_levels/Dropdown'
 
 export default function VideoFilter() {
    const options = [

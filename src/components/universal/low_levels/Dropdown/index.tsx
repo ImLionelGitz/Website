@@ -4,12 +4,11 @@ interface DropDown {
    label: string
    options: dropdownOption[]
    display: string
-   placeholder: string
    onChange: (option: string) => void
 }
 
 export default function Dropdown(props: DropDown) {
-   const { label, options, display, placeholder, onChange } = props
+   const { label, options, display, onChange } = props
 
    return (
       <div className={style.dropDown}>
@@ -21,11 +20,7 @@ export default function Dropdown(props: DropDown) {
                value={display}
                onChange={(e) => onChange(e.target.value)}
             >
-               {placeholder && (
-                  <option value="" disabled>
-                     {placeholder}
-                  </option>
-               )}
+               <option value="all">All</option>
 
                {options.map((opt) => (
                   <option key={opt.value} value={opt.value}>
