@@ -8,3 +8,8 @@ type review = {
    pfp: string
    ratings: number
 }
+
+type dropdownOption = {
+   value: string
+   label: string
+}

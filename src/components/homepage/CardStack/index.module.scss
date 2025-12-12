@@ -114,7 +114,7 @@ $t: .8s;
       grid-area: 1/ 1/ -1;
       /* occupy entire first column */
       /* whatever, maybe better ways for setting dims */
-      height: 13em;
+      height: 208px;
       aspect-ratio: 1;
       object-fit: cover;
       /* slide just moving image out & back in */
@@ -138,7 +138,7 @@ $t: .8s;
       background: none;
       border: 0;
       color: aliceblue;
-      margin: 0px 1rem;
+      margin: 0px 16px;
       font-size: x-large;
     }
   }

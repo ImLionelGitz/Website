@@ -14,7 +14,7 @@ export default function NavBar() {
          <div className={style.NavContent}>
             {navs.map((val, index) => (
                <Fragment key={index}>
-                  <Link href={'#'} className="mx-1">
+                  <Link href={`/${val.toLowerCase()}`} className="mx-1">
                      {val.toUpperCase()}
                   </Link>
 

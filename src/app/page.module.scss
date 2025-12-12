@@ -7,7 +7,7 @@
    justify-content: center;
    align-items: center;
    display: flex;
-   height: 28rem;
+   height: 448px;
 
    .Text {
       color: #f9f9f9;
@@ -27,8 +27,9 @@
 
 .NewsSection {
    color: #f9f9f9;
-   display: flex;
    flex-direction: column;
    align-items: center;
    margin-bottom: 45px;
+   display: flex;
+   overflow: hidden;
 }

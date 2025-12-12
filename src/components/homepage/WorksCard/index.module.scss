@@ -5,8 +5,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 14rem;
-    height: 18rem;
+    width: 224px;
+    height: 288px;
     display: inline-flex;
     user-select: none;
     color: black;
@@ -17,29 +17,29 @@
         background-size: cover;
         width: 129px;
         height: 75px;
-        /* transform: translate(-3px, -43px); */
-        top: 23%;
-        left: 20%;
         position: absolute;
+        top: 48px;
+        left: 45px;
     }
 
     .Title {
+        text-align: center;
+        width: 74px;
         font-size: 15px;
         font-weight: bold;
         position: absolute;
-        top: 63%;
-        left: 31%;
-        text-align: center;
-        width: 74px;
+        top: 131px;
+        left: 70px;
     }
 
     .Descript {
+        word-wrap: break-word;
         text-align: center;
         width: 130px;
         font-size: 11px;
         /* transform: translate(-2px, -9px); */
         position: absolute;
-        top: 79%;
+        top: 164px;
     }
 
     p {

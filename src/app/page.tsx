@@ -37,7 +37,7 @@ const data: review[] = [
 export default function Home() {
    return (
       <main>
-         <section>
+         <section style={{ overflowX: 'clip' }}>
             <HomeBar />
 
             <div className={style.Banner}>
