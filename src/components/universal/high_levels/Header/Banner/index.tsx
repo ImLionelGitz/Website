@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import style from './index.module.scss'
 
 interface Banner {
@@ -15,7 +16,9 @@ export default function Banner({ image, content }: Banner) {
             <img className={style.Gradient} src="/Dark.png" alt="" />
 
             <div className={style.Info}>
-               <img src="/logo.webp" alt="" />
+               <Link href="/">
+                  <img src="/logo.webp" alt="" className="w-100" />
+               </Link>
                <p>{content}</p>
             </div>
          </div>

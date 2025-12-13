@@ -1,10 +1,14 @@
-.Banner {
-    height: 35vw;
-}
-
 .AppsSection {
     text-align: center;
     color: aliceblue;
     margin-top: 46px;
-    /* padding: 0px 2px; */
+    display: flex;
+    justify-content: space-evenly;
+
+    .CardHolder {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 18px;
+    }
 }

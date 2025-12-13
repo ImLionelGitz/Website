@@ -1,9 +1,8 @@
-import AppCard from '@/components/apps/AppCard'
 import Filter from '@/components/universal/high_levels/Filter'
 import Footer from '@/components/universal/high_levels/Footer'
-import { Col, Container, Row } from 'react-bootstrap'
-import style from './page.module.scss'
 import Header from '@/components/universal/high_levels/Header'
+import VideoCard from '@/components/videos/VideoCard'
+import style from '../apps/page.module.scss'
 
 export default function Apps() {
    const options = [
@@ -16,23 +15,24 @@ export default function Apps() {
    const filters = {
       Category: options,
       Genre: options,
-      Platform: options,
-      Mode: options,
    }
 
    return (
       <main>
-         <Header imageUrl={'/test.jpg'} text="ha ha ha ha ha" />
+         <Header
+            imageUrl={'/test2.png'}
+            text="This method returns an array of the object's keys, which you can then iterate over to access the corresponding values"
+         />
 
          <section className={style.AppsSection}>
             <Filter filters={filters} />
 
             <div style={{ maxWidth: '800px' }}>
-               <h1 className="mb-3">My Apps</h1>
+               <h1 className="mb-3">My Best Videos</h1>
 
                <div className={style.CardHolder}>
-                  <AppCard />
-                  <AppCard />
+                  <VideoCard />
+                  <VideoCard />
                </div>
             </div>
          </section>

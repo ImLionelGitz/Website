@@ -12,11 +12,7 @@ export default function Filter(props: FilterType) {
    const { filters } = props
 
    return (
-      <Stack
-         direction="vertical"
-         className={style.Filter}
-         style={{ marginLeft: '25px', gap: '10px' }}
-      >
+      <Stack direction="vertical" className={style.Filter}>
          {Object.keys(filters).map((key, i) => (
             <Dropdown
                key={i}
