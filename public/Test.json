@@ -1,0 +1,27 @@
+{
+    "media": {
+        "goku": [
+            {
+                "price": 100,
+                "remarks": "ha ha ha ha",
+                "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGNRWnSbtAzcB9_rouhPBIX6vnTvE65a5JHA&s",
+                "url": "#",
+                "isVideo": false
+            }
+        ],
+
+        "vegeta": [
+            {
+                "price": 100,
+                "remarks": "ha ha ha ha",
+                "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlGeu8bOLL5-bh-H8_lo7r8ZAuuok6mIFKPA&s",
+                "url": "#",
+                "isVideo": false
+            }
+        ]
+    },
+
+    "apps": {},
+
+    "models": {}
+}
