@@ -1,0 +1,13 @@
+.contactForm {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    &Send {
+        background: #047857;
+        padding: 6px 44px;
+        color: #eee;
+        border-radius: 8px;
+        font-weight: bold;
+    }
+}

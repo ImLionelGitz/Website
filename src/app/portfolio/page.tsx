@@ -46,7 +46,7 @@ export default function Portfolio() {
 
    return (
       <main>
-         {/* <Header imageUrl="" text="" /> */}
+         <Header imageUrl="" text="" />
 
          <section>
             <PortfolioBtn />

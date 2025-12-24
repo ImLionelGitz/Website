@@ -4,11 +4,12 @@ interface DropDown {
    label: string
    options: dropdownOption[]
    display: string
+   color?: string
    onChange: (option: string) => void
 }
 
 export default function Dropdown(props: DropDown) {
-   const { label, options, display, onChange } = props
+   const { label, options, display, color, onChange } = props
 
    return (
       <div className={style.dropDown}>
@@ -19,6 +20,7 @@ export default function Dropdown(props: DropDown) {
                id={label}
                value={display}
                onChange={(e) => onChange(e.target.value)}
+               style={{ color: color ? color : '#c9c0c0' }}
             >
                <option value="all">All</option>
 
