@@ -1,27 +1,68 @@
 {
     "media": {
-        "goku": [
-            {
-                "price": 100,
-                "remarks": "ha ha ha ha",
-                "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGNRWnSbtAzcB9_rouhPBIX6vnTvE65a5JHA&s",
-                "url": "#",
-                "isVideo": false
-            }
-        ],
-
-        "vegeta": [
-            {
-                "price": 100,
-                "remarks": "ha ha ha ha",
-                "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlGeu8bOLL5-bh-H8_lo7r8ZAuuok6mIFKPA&s",
-                "url": "#",
-                "isVideo": false
-            }
-        ]
+        "goku": {
+            "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGNRWnSbtAzcB9_rouhPBIX6vnTvE65a5JHA&s",
+            "content": [
+                {
+                    "price": 100,
+                    "remarks": "ha ha ha ha",
+                    "isVideo": false,
+                    "url": "https://img2.wallspic.com/crops/9/2/1/2/7/172129/172129-anime-dragon_ball_super-goku-zamasu-dragon_ball-2560x1440.jpg"
+                },
+                {
+                    "price": 100,
+                    "remarks": "ha ha ha ha",
+                    "isVideo": false,
+                    "url": "https://img1.wallspic.com/previews/9/6/9/4/6/164969/164969-goku-dragon_ball_super_broly-superman-broly-superhero-x750.jpg"
+                },
+                {
+                    "price": 100,
+                    "remarks": "ha ha ha ha",
+                    "isVideo": false,
+                    "url": "https://img1.wallspic.com/previews/3/1/0/2/4/142013/142013-vegeta-ear-super_saiyan-anime-saiyan-x750.jpg"
+                }
+            ]
+        },
+        "vegeta": {
+            "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlGeu8bOLL5-bh-H8_lo7r8ZAuuok6mIFKPA&s",
+            "content": [
+                {
+                    "price": 100,
+                    "remarks": "ha ha ha ha",
+                    "isVideo": false,
+                    "url": "https://img1.wallspic.com/crops/4/3/7/5/5/155734/155734-goku-zamasu-vegeta-gohan-dragon_ball-1280x720.jpg"
+                },
+                {
+                    "price": 100,
+                    "remarks": "ha ha ha ha",
+                    "isVideo": false,
+                    "url": "https://img1.wallspic.com/previews/9/7/0/2/22079/22079-mountain-dinosaur-hill-landscape-x750.jpg"
+                },
+                {
+                    "price": 100,
+                    "remarks": "ha ha ha ha",
+                    "isVideo": false,
+                    "url": "https://img2.wallspic.com/previews/9/6/7/1/5/151769/151769-pc_game-resident_evil_3_nemesis-action_adventure_game-resident_evil_2-capcom-x750.jpg"
+                }
+            ]
+        }
     },
-
-    "apps": {},
-
-    "models": {}
+    "apps": {
+        "unity": {
+            "icon": "/unity.png",
+            "content": [
+                {
+                    "platforms": [],
+                    "remarks": "ha ha ha ha",
+                    "url": "https://img2.wallspic.com/crops/9/2/1/2/7/172129/172129-anime-dragon_ball_super-goku-zamasu-dragon_ball-2560x1440.jpg"
+                }
+            ]
+        }
+    },
+    "models": {
+        "jamal": {
+            "icon": "/cell.png",
+            "content": "https://sketchfab.com/3d-models/udin-din-din-dun-madin-din-din-dun-game-model-4d90fef723fd4b18aea3ab253c013eb9"
+        }
+    }
 }
