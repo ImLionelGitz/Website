@@ -38,7 +38,7 @@ export default function Carousel({ children }: Carousel) {
                         '--offset': (active - i) / MAX_VISIBILITY,
                         '--direction': Math.sign(active - i),
                         '--abs-offset': Math.abs(active - i) / MAX_VISIBILITY,
-                        'pointer-events': active === i ? 'auto' : 'none',
+                        pointerEvents: active === i ? 'auto' : 'none',
                         opacity:
                            Math.abs(active - i) >= MAX_VISIBILITY ? '0' : '1',
                         display:

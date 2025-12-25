@@ -1,0 +1,25 @@
+{
+    "home": {
+        "reviews": [
+            {
+                "name": "lol",
+                "comments": "The quick brown fox jumps over the lazy dog",
+                "pfp": "/pfp1.jpg",
+                "ratings": 0
+            }
+        ],
+        "news": [
+            {
+                "title": "Buu Died",
+                "summry": "kokokokkokokoko",
+                "author": "Me",
+                "uploadDate": "12/02/2000",
+                "link": "#"          
+            }
+        ]
+    },
+
+    "apps": {},
+    "videos": {},
+    "portfolio": {}
+}

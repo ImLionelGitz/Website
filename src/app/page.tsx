@@ -1,3 +1,5 @@
+'use client'
+
 import WorksCard from '@/components/homepage/WorksCard'
 import Footer from '@/components/universal/high_levels/Footer'
 import Button from '@/components/universal/low_levels/Button'
@@ -7,31 +9,24 @@ import NewsCard from '@/components/homepage/NewsCard'
 import ReviewGallery from '@/components/homepage/ReviewGallery'
 import style from './page.module.scss'
 import Header from '@/components/universal/high_levels/Header'
-
-const data: review[] = [
-   {
-      name: 'lol',
-      comments: 'The quick brown fox jumps over the lazy dog',
-      pfp: '/pfp1.jpg',
-      ratings: 0,
-   },
-
-   {
-      name: 'Goku',
-      comments: 'The quick brown fox jumps over the lazy dog',
-      pfp: '/pfp2.jpg',
-      ratings: 4,
-   },
-
-   {
-      name: 'Jamal',
-      comments: 'The quick brown fox jumps over the lazy dog',
-      pfp: '/castle.png',
-      ratings: 2,
-   },
-]
+import { useEffect, useState } from 'react'
 
 export default function Home() {
+   const [pageData, setData] = useState<Home | null>(null)
+
+   useEffect(() => {
+      async function fetchData() {
+         const resp = await fetch('/Test2.json')
+
+         if (resp.ok) {
+            const data = await resp.json()
+            setData(data.home)
+         }
+      }
+
+      fetchData()
+   }, [])
+
    return (
       <main>
          <Header imageUrl="/castle.png" text="lololololol" />
@@ -41,7 +36,7 @@ export default function Home() {
                <h1>Our</h1>
                <h2>Works</h2>
 
-               <Button text="Visit Portfolio" />
+               <Button text="Visit Portfolio" href="/portfolio" />
             </div>
 
             <CardStack>
@@ -49,18 +44,21 @@ export default function Home() {
                   icon={'/castle.png'}
                   title={'Videos'}
                   info={'llololol'}
+                  url="/portfolio"
                />
 
                <WorksCard
                   icon={'/castle.png'}
-                  title={'Thumbnail'}
+                  title={'Videos'}
                   info={'llololol'}
+                  url="/portfolio"
                />
 
                <WorksCard
                   icon={'/castle.png'}
-                  title={'Models'}
+                  title={'Videos'}
                   info={'llololol'}
+                  url="/portfolio"
                />
             </CardStack>
          </section>
@@ -69,34 +67,22 @@ export default function Home() {
             <h1 className="mb-5">Announcements</h1>
 
             <div className="d-flex">
-               <NewsCard
-                  title={'Buu Died'}
-                  firstline={'kokokokkokokoko'}
-                  writer={'Goku'}
-                  uploadDate={'12/02/2000'}
-                  link={'#'}
-               />
-
-               <NewsCard
-                  title={'Buu Died'}
-                  firstline={'kokokokkokokoko'}
-                  writer={'Goku'}
-                  uploadDate={'12/02/2000'}
-                  link={'#'}
-               />
-
-               <NewsCard
-                  title={'Buu Died'}
-                  firstline={'kokokokkokokoko'}
-                  writer={'Goku'}
-                  uploadDate={'12/02/2000'}
-                  link={'#'}
-               />
+               {pageData &&
+                  pageData.news.map((news, i) => (
+                     <NewsCard
+                        title={news.title}
+                        firstline={news.summry}
+                        writer={news.author}
+                        uploadDate={news.uploadDate}
+                        link={news.link}
+                        key={i}
+                     />
+                  ))}
             </div>
          </section>
 
          <section className="d-flex justify-content-center">
-            <ReviewGallery reviews={data} />
+            <ReviewGallery reviews={pageData ? pageData.reviews : []} />
          </section>
 
          <Footer />

@@ -1,9 +1,22 @@
 // interfaces
 
+// Home page
+
+interface Home {
+   reviews: review[]
+   news: news[]
+}
+
+// Portfolio page
 interface Portfolios {
    media: Record<string, pfNextSlot>
    apps: Record<string, pfNextSlot>
    models: Record<string, pfNextSlot>
+}
+
+interface BtnCall {
+   action: string
+   data: { btnName: string; btnType: string }
 }
 
 interface PortfoliosHaxe {
@@ -18,35 +31,23 @@ interface HaxeData {
    data: PortfoliosHaxe
 }
 
-interface BtnCall {
-   action: string
-   data: { btnName: string; btnType: string }
-}
-
 // types
 
 type CSSVars = React.CSSProperties & { [key: `--${string}`]: string | number }
 
 // pf = Portfolio
 
-type pfMediaData = {
-   price: number
-   remarks: string
-   url: string
-   isVideo: boolean
-}
-
-type pfAppData = {
-   platforms: number[]
-   remarks: string
-   url: string
-}
-
-type unitedPF = pfAppData & pfMediaData
-
 type pfNextSlot = {
    icon: string
-   content: unitedPF[] | string
+   content:
+      | string
+      | Array<{
+           platforms: number[]
+           price: number
+           remarks: string
+           url: string
+           isVideo: boolean
+        }>
 }
 
 type pfHaxeSlot = {
@@ -60,6 +61,14 @@ type review = {
    comments: string
    pfp: string
    ratings: number
+}
+
+type news = {
+   title: string
+   summry: string
+   author: string
+   uploadDate: string
+   link: string
 }
 
 type dropdownOption = {
