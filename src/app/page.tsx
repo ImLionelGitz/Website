@@ -10,18 +10,36 @@ import ReviewGallery from '@/components/homepage/ReviewGallery'
 import style from './page.module.scss'
 import Header from '@/components/universal/high_levels/Header'
 import { useEffect, useState } from 'react'
+import { getWebData } from '@/helpers/funcs'
+import { Pages } from '@/helpers/enums'
+
+interface Home {
+   reviews: review[]
+   news: news[]
+}
+
+type review = {
+   name: string
+   comments: string
+   pfp: string
+   ratings: number
+}
+
+type news = {
+   title: string
+   summry: string
+   author: string
+   uploadDate: string
+   link: string
+}
 
 export default function Home() {
    const [pageData, setData] = useState<Home | null>(null)
 
    useEffect(() => {
       async function fetchData() {
-         const resp = await fetch('/Test2.json')
-
-         if (resp.ok) {
-            const data = await resp.json()
-            setData(data.home)
-         }
+         const resp = await getWebData(Pages.HOME)
+         setData(resp)
       }
 
       fetchData()
@@ -67,17 +85,16 @@ export default function Home() {
             <h1 className="mb-5">Announcements</h1>
 
             <div className="d-flex">
-               {pageData &&
-                  pageData.news.map((news, i) => (
-                     <NewsCard
-                        title={news.title}
-                        firstline={news.summry}
-                        writer={news.author}
-                        uploadDate={news.uploadDate}
-                        link={news.link}
-                        key={i}
-                     />
-                  ))}
+               {pageData?.news.map((news, i) => (
+                  <NewsCard
+                     title={news.title}
+                     firstline={news.summry}
+                     writer={news.author}
+                     uploadDate={news.uploadDate}
+                     link={news.link}
+                     key={i}
+                  />
+               ))}
             </div>
          </section>
 

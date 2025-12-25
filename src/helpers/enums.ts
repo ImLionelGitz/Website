@@ -8,3 +8,14 @@ export enum Messages {
    SLIDER_OUTGOING = 'slider_outgoing',
    BTN_INTERACT = 'btn_interact',
 }
+
+export enum Platforms {
+   ANDROID = 'android',
+}
+
+export enum Pages {
+   APPS = 'apps',
+   HOME = 'home',
+   PORTFOLIO = 'portfolio',
+   VIDEOS = 'videos',
+}

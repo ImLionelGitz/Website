@@ -2,11 +2,6 @@
 
 // Home page
 
-interface Home {
-   reviews: review[]
-   news: news[]
-}
-
 // Portfolio page
 interface Portfolios {
    media: Record<string, pfNextSlot>
@@ -54,21 +49,6 @@ type pfHaxeSlot = {
    imgUrl: string
    name: string
    url: string // this is for models only
-}
-
-type review = {
-   name: string
-   comments: string
-   pfp: string
-   ratings: number
-}
-
-type news = {
-   title: string
-   summry: string
-   author: string
-   uploadDate: string
-   link: string
 }
 
 type dropdownOption = {

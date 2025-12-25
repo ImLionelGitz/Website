@@ -6,10 +6,12 @@ import { Stack } from 'react-bootstrap'
 
 interface FilterType {
    filters: Record<string, dropdownOption[]>
+   curFilter: Record<string, string>
+   itemFilter: (category: string, filter: string) => void
 }
 
 export default function Filter(props: FilterType) {
-   const { filters } = props
+   const { filters, curFilter, itemFilter } = props
 
    return (
       <Stack direction="vertical" className={style.Filter}>
@@ -18,8 +20,8 @@ export default function Filter(props: FilterType) {
                key={i}
                label={key}
                options={filters[key]}
-               display={''}
-               onChange={() => {}}
+               display={curFilter[key]}
+               onChange={(e) => itemFilter(key, e)}
             />
          ))}
       </Stack>

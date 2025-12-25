@@ -7,16 +7,24 @@ import {
 } from 'react-icons/fa'
 
 import style from './index.module.scss'
+import { SiRoblox } from 'react-icons/si'
 
 export default function Footer() {
-   const icons = [FaYoutube, FaTwitter, FaTiktok, FaInstagram, FaDeviantart]
+   const icons = [
+      FaYoutube,
+      FaTwitter,
+      FaTiktok,
+      FaInstagram,
+      FaDeviantart,
+      SiRoblox,
+   ]
+
    const links = [
       'https://www.youtube.com/@LionelLeoPlayz',
       'https://twitter.com/LionelLeoGFX',
       'https://www.tiktok.com/@lionelleoplayz',
       'https://www.instagram.com/lionelleoplay.z',
       'https://www.deviantart.com/timmystudios',
-      'https://www.patreon.com/LionelLeoPlayz',
       'https://www.roblox.com/groups/4708773/Liger',
    ]
 
