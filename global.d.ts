@@ -14,18 +14,6 @@ interface BtnCall {
    data: { btnName: string; btnType: string }
 }
 
-interface PortfoliosHaxe {
-   media: Array<pfHaxeSlot>
-   apps: Array<pfHaxeSlot>
-   models: Array<pfHaxeSlot>
-   parallax: Array<string>
-}
-
-interface HaxeData {
-   action: string
-   data: PortfoliosHaxe
-}
-
 // types
 
 type CSSVars = React.CSSProperties & { [key: `--${string}`]: string | number }
@@ -34,21 +22,15 @@ type CSSVars = React.CSSProperties & { [key: `--${string}`]: string | number }
 
 type pfNextSlot = {
    icon: string
-   content:
-      | string
-      | Array<{
-           platforms: number[]
-           price: number
-           remarks: string
-           url: string
-           isVideo: boolean
-        }>
+   content: string | Array<pfContent>
 }
 
-type pfHaxeSlot = {
-   imgUrl: string
-   name: string
-   url: string // this is for models only
+type pfContent = {
+   platforms: number[]
+   price: number
+   remarks: string
+   url: string
+   isVideo: boolean
 }
 
 type dropdownOption = {

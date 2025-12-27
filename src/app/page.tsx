@@ -60,23 +60,23 @@ export default function Home() {
             <CardStack>
                <WorksCard
                   icon={'/castle.png'}
-                  title={'Videos'}
+                  title={'Medias'}
                   info={'llololol'}
-                  url="/portfolio"
+                  url="/portfolio?page=1"
                />
 
                <WorksCard
                   icon={'/castle.png'}
-                  title={'Videos'}
+                  title={'Models'}
                   info={'llololol'}
-                  url="/portfolio"
+                  url="/portfolio?page=2"
                />
 
                <WorksCard
                   icon={'/castle.png'}
-                  title={'Videos'}
+                  title={'Codes'}
                   info={'llololol'}
-                  url="/portfolio"
+                  url="/portfolio?page=3"
                />
             </CardStack>
          </section>

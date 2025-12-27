@@ -11,7 +11,7 @@ export default function Header(props: DaHeader) {
    const { imageUrl, text } = props
 
    return (
-      <section style={{ overflowX: 'clip' }}>
+      <section style={{ overflowX: 'clip', position: 'relative', zIndex: '9' }}>
          <HomeBar />
 
          <div style={{ height: '40vw' }}>

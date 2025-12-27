@@ -1,14 +1,12 @@
 'use client'
 
+import PortfolioBtn from '@/components/portfolio/PortfolioBtn'
+import PortfolioFrame from '@/components/portfolio/PortfolioFrame'
 import Footer from '@/components/universal/high_levels/Footer'
 import Header from '@/components/universal/high_levels/Header'
-import { useEffect, useState } from 'react'
 import { Messages } from '@/helpers/enums'
-import PortfolioFrame from '@/components/portfolio/PortfolioFrame'
-import PortfolioCard from '@/components/portfolio/PortfolioCard'
-import { Col, Container, Row } from 'react-bootstrap'
-import PortfolioContain from '@/components/portfolio/PortfolioContain'
-import PortfolioBtn from '@/components/portfolio/PortfolioBtn'
+import { useEffect, useState } from 'react'
+import style from './page.module.scss'
 
 export default function Portfolio() {
    const [visible, setVisible] = useState(false)
@@ -48,28 +46,25 @@ export default function Portfolio() {
       <main>
          <Header imageUrl="" text="" />
 
-         <section>
-            <PortfolioBtn />
+         <section className={style.PortfolioSection}>
+            <PortfolioFrame iframeCMD={message} />
 
-            {/* <div>
-               {visible && (
-                  <button onClick={() => setMessage(Messages.SHOW_CODES)}>
-                     apps
-                  </button>
-               )}
+            <div className={`${style.Controls} ${visible && style.active}`}>
+               <PortfolioBtn
+                  icon="Media"
+                  onClick={() => setMessage(Messages.SHOW_THUMBS)}
+               />
 
-               {visible && (
-                  <button onClick={() => setMessage(Messages.SHOW_THUMBS)}>
-                     media
-                  </button>
-               )}
+               <PortfolioBtn
+                  icon="Model"
+                  onClick={() => setMessage(Messages.SHOW_MODELS)}
+               />
 
-               {visible && (
-                  <button onClick={() => setMessage(Messages.SHOW_MODELS)}>
-                     models
-                  </button>
-               )}
-            </div> */}
+               <PortfolioBtn
+                  icon="Code"
+                  onClick={() => setMessage(Messages.SHOW_CODES)}
+               />
+            </div>
          </section>
 
          <Footer />
