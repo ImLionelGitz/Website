@@ -7,33 +7,33 @@ import Header from '@/components/universal/high_levels/Header'
 import { Messages } from '@/helpers/enums'
 import { useEffect, useState } from 'react'
 import style from './page.module.scss'
+import PortfolioContain from '@/components/portfolio/PortfolioContain'
 
 export default function Portfolio() {
    const [visible, setVisible] = useState(false)
    const [message, setMessage] = useState('')
+   const [iconData, setData] = useState<iconData | null>(null)
 
    useEffect(() => {
       const onMessage = (e: MessageEvent) => {
-         try {
-            const lol: BtnCall = JSON.parse(e.data)
+         switch (e.data) {
+            case Messages.SLIDER_INCOMING:
+               setVisible(false)
+               break
 
-            if (lol.action === Messages.BTN_INTERACT) {
-               console.log(lol.data)
-            }
-         } catch (_) {
-            switch (e.data) {
-               case Messages.SLIDER_INCOMING:
-                  setVisible(false)
-                  break
+            case Messages.SLIDER_OUTGOING:
+               setVisible(true)
+               setMessage('')
+               break
 
-               case Messages.SLIDER_OUTGOING:
-                  setVisible(true)
-                  setMessage('')
-                  break
+            default:
+               const lol: BtnCall = JSON.parse(e.data)
 
-               default:
-                  break
-            }
+               if (lol.action === Messages.BTN_INTERACT) {
+                  setData(lol.data)
+               }
+
+               break
          }
       }
 
@@ -65,6 +65,13 @@ export default function Portfolio() {
                   onClick={() => setMessage(Messages.SHOW_CODES)}
                />
             </div>
+
+            {iconData && (
+               <PortfolioContain
+                  cardData={iconData}
+                  onExit={() => setData(null)}
+               />
+            )}
          </section>
 
          <Footer />

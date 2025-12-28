@@ -1,0 +1,305 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "title": "Generated Schema",
+  "description": "Generated from JSON data",
+  "type": "object",
+  "properties": {
+    "home": {
+      "type": "object",
+      "properties": {
+        "reviews": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "comments": {
+                "type": "string"
+              },
+              "pfp": {
+                "type": "string",
+                "format": "uri"
+              },
+              "ratings": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "comments",
+              "name",
+              "pfp",
+              "ratings"
+            ]
+          },
+          "minItems": 0
+        },
+        "news": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "summry": {
+                "type": "string"
+              },
+              "author": {
+                "type": "string"
+              },
+              "uploadDate": {
+                "type": "string"
+              },
+              "link": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "required": [
+              "author",
+              "link",
+              "summry",
+              "title",
+              "uploadDate"
+            ]
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "news",
+        "reviews"
+      ]
+    },
+    "apps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "img": {
+            "type": "string",
+            "format": "uri"
+          },
+          "platforms": {
+            "type": "object",
+            "properties": {
+              "android": {
+                "type": "string",
+                "format": "uri"
+              },
+              "windows": {
+                "type": "string",
+                "format": "uri"
+              },
+              "universal": {
+                "type": "string",
+                "format": "uri"
+              },
+              "multiplayer": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          },
+          "category": {
+            "type": "string"
+          },
+          "genre": {
+            "type": "string"
+          },
+          "mode": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "category",
+          "genre",
+          "img",
+          "mode",
+          "name",
+          "platforms"
+        ]
+      },
+      "minItems": 0
+    },
+    "videos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "urlID": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "uploadDate": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "genre": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "category",
+          "genre",
+          "title",
+          "uploadDate",
+          "urlID"
+        ]
+      },
+      "minItems": 0
+    },
+    "portfolio": {
+      "type": "object",
+      "properties": {
+        "media": {
+          "type": "object",
+          "patternProperties": {
+            "^.*$": {
+              "type": "object",
+              "properties": {
+                "icon": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "price": {
+                        "type": "integer"
+                      },
+                      "views": {
+                        "type": "integer"
+                      },
+                      "remarks": {
+                        "type": "string"
+                      },
+                      "isVideo": {
+                        "type": "boolean"
+                      },
+                      "url": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "isVideo",
+                      "price",
+                      "remarks",
+                      "url",
+                      "views"
+                    ],
+                    "if": {
+                      "properties": {
+                        "isVideo": {
+                          "const": false
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "pattern": "^https?://"
+                        }
+                      }
+                    }
+                  },
+                  "minItems": 0
+                }
+              },
+              "required": [
+                "content",
+                "icon"
+              ]
+            }
+          }
+        },
+        "apps": {
+          "type": "object",
+          "properties": {
+            "^.*$": {
+              "type": "object",
+              "properties": {
+                "icon": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "platforms": {
+                        "type": "array",
+                        "items": {}
+                      },
+                      "remarks": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string",
+                        "format": "uri"
+                      }
+                    },
+                    "required": [
+                      "platforms",
+                      "remarks",
+                      "url"
+                    ]
+                  },
+                  "minItems": 0
+                }
+              },
+              "required": [
+                "content",
+                "icon"
+              ]
+            }
+          }
+        },
+        "models": {
+          "type": "object",
+          "properties": {
+            "^.*$": {
+              "type": "object",
+              "properties": {
+                "icon": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "required": [
+                "content",
+                "icon"
+              ]
+            }
+          }
+        }
+      },
+      "required": [
+        "apps",
+        "media",
+        "models"
+      ]
+    }
+  },
+  "required": [
+    "apps",
+    "home",
+    "portfolio",
+    "videos"
+  ]
+}

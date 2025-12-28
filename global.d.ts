@@ -11,7 +11,7 @@ interface Portfolios {
 
 interface BtnCall {
    action: string
-   data: { btnName: string; btnType: string }
+   data: iconData
 }
 
 // types
@@ -25,9 +25,15 @@ type pfNextSlot = {
    content: string | Array<pfContent>
 }
 
+type iconData = {
+   btnName: string
+   btnType: 'media' | 'apps' | 'models'
+}
+
 type pfContent = {
    platforms: number[]
    price: number
+   views: number
    remarks: string
    url: string
    isVideo: boolean

@@ -1,47 +1,97 @@
-import { MdVideoLibrary } from 'react-icons/md'
-import style from './index.module.scss'
-import { FaImages } from 'react-icons/fa'
-import { useState } from 'react'
+/* eslint-disable @next/next/no-img-element */
 
-export default function PortfolioCard() {
-   const [test, set] = useState('')
+import { MdVideoLibrary } from 'react-icons/md'
+import { FaImages } from 'react-icons/fa'
+import style from './index.module.scss'
+
+interface PortfolioCard {
+   guyName: string
+   views: number
+   content: string
+   isVideo: boolean
+   price?: number
+   platforms?: number[]
+   remarks: string
+   flip: boolean
+   setFlip: () => void
+}
+
+export default function PortfolioCard(props: PortfolioCard) {
+   const {
+      guyName,
+      views,
+      content,
+      isVideo,
+      price,
+      platforms,
+      remarks,
+      flip,
+      setFlip,
+   } = props
 
    return (
       <div
-         onClick={() => set(style.active)}
-         className={`${style.PortfolioCard} ${style.flipped} ${test}`}
+         onClick={() => setFlip()}
+         className={`${style.PortfolioCard} ${style.flipped} ${flip ? style.active : ''}`}
       >
          <div className={style.PortfolioFront}>
             <div className="d-flex justify-content-between align-items-center position-relative">
-               <h1 className={`${style.Header} ${style.highlight}`}>Brookie</h1>
-               <p className={`${style.Views} ${style.highlight}`}>
-                  222,000 views
-               </p>
+               <h1 className={`${style.Header} ${style.highlight}`}>
+                  {guyName}
+               </h1>
+
+               {price && (
+                  <p className={`${style.Views} ${style.highlight}`}>
+                     {`${views} views`}
+                  </p>
+               )}
             </div>
 
             <div className={style.Display}>
-               {/* <img src="/castle.png" alt="" className="w-100" /> */}
-               <iframe src="https://www.youtube.com/embed/1WF1Dx_OBYs?controls=0"></iframe>
+               {isVideo ? (
+                  <iframe
+                     src={`https://www.youtube.com/embed/${content}?controls=0`}
+                  ></iframe>
+               ) : (
+                  <img src={content} alt="" className="w-100" />
+               )}
             </div>
 
             <div className={style.PriceSection}>
-               <h1 className={style.highlight}>Price</h1>
-               <p className={`${style.Price} ${style.highlight}`}>$2000</p>
+               <h1 className={style.highlight + (platforms && ' mb-0')}>
+                  {price ? 'Price' : 'Platform'}
+               </h1>
+
+               {platforms && (
+                  <div className={style.Platforms}>
+                     <img src="/unity.png" alt="" />
+                  </div>
+               )}
+
+               {price && (
+                  <p
+                     className={`${style.Price} ${style.highlight}`}
+                  >{`$${price}`}</p>
+               )}
             </div>
 
-            <div>
-               <div className={style.DesBox}>
-                  <h1 className={style.InnerTxt}>Remarks</h1>
+            <div className={style.DesBox}>
+               <h1 className={style.InnerTxt}>Remarks</h1>
 
-                  <p>The quick brown fox jumps over the lazy dog</p>
-               </div>
+               <p>{remarks}</p>
             </div>
          </div>
 
          <div className={style.PortfolioBack}>
-            <img src="/silverLiger.png" alt="" />
+            <img src="/silverLiger2.png" alt="" />
 
-            <FaImages style={{ filter: 'drop-shadow(1px 4px 6px black)' }} />
+            {isVideo ? (
+               <MdVideoLibrary
+                  style={{ filter: 'drop-shadow(1px 4px 6px black)' }}
+               />
+            ) : (
+               <FaImages style={{ filter: 'drop-shadow(1px 4px 6px black)' }} />
+            )}
          </div>
       </div>
    )

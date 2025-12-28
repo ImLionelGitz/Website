@@ -85,6 +85,14 @@ $textStroke: #eeeeee;
                 position: relative;
                 bottom: 8px;
             }
+
+            .Platforms {
+                margin-bottom: 8px;
+
+                img {
+                    width: 22px;
+                }
+            }
         }
 
         h1 {
@@ -130,7 +138,7 @@ $textStroke: #eeeeee;
 }
 
 .flipped {
-    transform: rotateY(180deg) scale(0.55);
+    transform: rotateY(180deg) scale(0.75);
 }
 
 .active {
