@@ -87,11 +87,11 @@ $textStroke: #eeeeee;
             }
 
             .Platforms {
-                margin-bottom: 8px;
-
-                img {
-                    width: 22px;
-                }
+                display: flex;
+                gap: 8px;
+                margin: 8px;
+                font-size: 20px;
+                color: black;
             }
         }
 

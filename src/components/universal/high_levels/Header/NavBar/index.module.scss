@@ -1,6 +1,10 @@
 .Navbar {
     transform: scale(1.2);
 
+    @media (max-width: 480px) {
+        transform: scale(1);
+    }
+
     .Bar {
         background-image: url('/navbar.png');
         background-repeat: round;

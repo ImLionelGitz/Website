@@ -3,6 +3,8 @@
 import { MdVideoLibrary } from 'react-icons/md'
 import { FaImages } from 'react-icons/fa'
 import style from './index.module.scss'
+import DaCode from './codesUsed'
+import { MyCodebase } from '@/helpers/enums'
 
 interface PortfolioCard {
    guyName: string
@@ -29,6 +31,17 @@ export default function PortfolioCard(props: PortfolioCard) {
       setFlip,
    } = props
 
+   function assignDef(p: string) {
+      const process = p.toUpperCase() as unknown as MyCodebase
+      const index = MyCodebase[process]
+
+      if (typeof index === 'number') {
+         return <DaCode codeType={index} />
+      }
+
+      throw new Error(`${p} doesn't exist in accepted codebase!`)
+   }
+
    return (
       <div
          onClick={() => setFlip()}
@@ -37,7 +50,7 @@ export default function PortfolioCard(props: PortfolioCard) {
          <div className={style.PortfolioFront}>
             <div className="d-flex justify-content-between align-items-center position-relative">
                <h1 className={`${style.Header} ${style.highlight}`}>
-                  {guyName}
+                  {guyName.replace(/_/g, ' ')}
                </h1>
 
                {price && (
@@ -59,12 +72,16 @@ export default function PortfolioCard(props: PortfolioCard) {
 
             <div className={style.PriceSection}>
                <h1 className={style.highlight + (platforms && ' mb-0')}>
-                  {price ? 'Price' : 'Platform'}
+                  {price ? 'Price' : 'Used'}
                </h1>
 
                {platforms && (
                   <div className={style.Platforms}>
-                     <img src="/unity.png" alt="" />
+                     {platforms.map((e, i) => (
+                        <DaCode key={i} codeType={e} />
+                     ))}
+
+                     {platforms.length <= 0 && assignDef(guyName)}
                   </div>
                )}
 
@@ -87,10 +104,10 @@ export default function PortfolioCard(props: PortfolioCard) {
 
             {isVideo ? (
                <MdVideoLibrary
-                  style={{ filter: 'drop-shadow(1px 4px 6px black)' }}
+                  style={{ filter: 'drop-shadow(black 1px 4px 2px)' }}
                />
             ) : (
-               <FaImages style={{ filter: 'drop-shadow(1px 4px 6px black)' }} />
+               <FaImages style={{ filter: 'drop-shadow(black 1px 4px 2px)' }} />
             )}
          </div>
       </div>

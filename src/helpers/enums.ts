@@ -7,12 +7,6 @@ export enum Messages {
    BTN_INTERACT = 'btn_interact',
 }
 
-export enum MyParams {
-   MEDIA,
-   CODES,
-   MODELS,
-}
-
 export enum Platforms {
    ANDROID = 'android',
 }
@@ -22,4 +16,18 @@ export enum Pages {
    HOME = 'home',
    PORTFOLIO = 'portfolio',
    VIDEOS = 'videos',
+}
+
+export enum MyParams {
+   MEDIA,
+   CODES,
+   MODELS,
+}
+
+export enum MyCodebase {
+   UNITY,
+   NEXT_JS,
+   HAXEFLIXEL,
+   ANDROID_STUDIO,
+   ROBLOX_STUDIO,
 }

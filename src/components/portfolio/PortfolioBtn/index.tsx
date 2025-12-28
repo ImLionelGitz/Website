@@ -1,6 +1,6 @@
-import { FaImage } from 'react-icons/fa'
+/* eslint-disable @next/next/no-img-element */
+import { FaCode, FaImage } from 'react-icons/fa'
 import { GiCube } from 'react-icons/gi'
-import { SiHaxe } from 'react-icons/si'
 import style from './index.module.scss'
 
 interface PortfolioBtn {
@@ -15,7 +15,7 @@ export default function PortfolioBtn({ icon, onClick }: PortfolioBtn) {
 
          {icon === 'Media' && <FaImage className="position-absolute" />}
          {icon === 'Model' && <GiCube className="position-absolute" />}
-         {icon === 'Code' && <SiHaxe className="position-absolute" />}
+         {icon === 'Code' && <FaCode className="position-absolute" />}
       </div>
    )
 }
