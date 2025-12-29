@@ -5,6 +5,58 @@
     display: flex;
     justify-content: space-evenly;
 
+    @media (max-width: 480px) {
+        flex-direction: column;
+
+        .FilterDown {
+            position: fixed;
+            width: 100%;
+            background: #198754;
+            bottom: 0;
+            z-index: 9;
+            padding: 8px 0px;
+            transform: translateY(0%);
+            transition: transform 500ms;
+        }
+
+        .Backdrop {
+            height: 100%;
+            width: 100%;
+            background: #0000006e;
+            position: fixed;
+            bottom: 0;
+            z-index: 9;
+        }
+
+        .goDown {
+            transform: translateY(100%);
+        }
+
+        .FilterBtn {
+            display: block !important;
+        }
+    }
+
+    .FilterBtn {
+        margin-left: 12px;
+        display: none;
+        position: absolute;
+        left: 0;
+        background: no-repeat;
+        border: 0;
+        color: #f0f8ff;
+        font-size: 15px;
+    }
+
+    .OuterHolder {
+        width: 800px;
+        min-height: 420px;
+
+        @media (max-width: 480px) {
+            width: auto;
+        }
+    }
+
     .CardHolder {
         display: flex;
         justify-content: center;

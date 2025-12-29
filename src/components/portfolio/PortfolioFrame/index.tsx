@@ -1,10 +1,12 @@
 import { useEffect, useRef } from 'react'
+import style from './index.module.scss'
 
 interface PortfolioFrame {
    iframeCMD: string
+   enabled: boolean
 }
 
-export default function PortfolioFrame({ iframeCMD }: PortfolioFrame) {
+export default function PortfolioFrame({ iframeCMD, enabled }: PortfolioFrame) {
    const iframe = useRef<HTMLIFrameElement>(null)
 
    useEffect(() => {
@@ -19,7 +21,7 @@ export default function PortfolioFrame({ iframeCMD }: PortfolioFrame) {
 
    return (
       <iframe
-         style={{ width: '100%', height: '100vh' }}
+         className={`${style.PortfolioFrame} ${!enabled && style.Disable}`}
          ref={iframe}
          src="html5/bin/index.html"
       ></iframe>

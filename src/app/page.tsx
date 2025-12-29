@@ -82,9 +82,9 @@ export default function Home() {
          </section>
 
          <section className={style.NewsSection}>
-            <h1 className="mb-5">Announcements</h1>
+            <h1 className="mb-3">Announcements</h1>
 
-            <div className="d-flex">
+            <div className={style.NewsCards}>
                {pageData?.news.map((news, i) => (
                   <NewsCard
                      title={news.title}
@@ -98,7 +98,7 @@ export default function Home() {
             </div>
          </section>
 
-         <section className="d-flex justify-content-center">
+         <section className={style.Reviews}>
             <ReviewGallery reviews={pageData ? pageData.reviews : []} />
          </section>
 

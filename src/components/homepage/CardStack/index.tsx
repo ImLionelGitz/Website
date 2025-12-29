@@ -1,5 +1,3 @@
-'use client'
-
 import { Children, ReactNode, useState } from 'react'
 import style from './index.module.scss'
 import { TiChevronLeft, TiChevronRight } from 'react-icons/ti'
@@ -43,12 +41,7 @@ export default function CardStack({ children }: CardStack) {
                   }
                   className={style.CardHolder}
                >
-                  <div
-                     onTransitionEnd={() => console.log('lol')}
-                     className={style.Inner}
-                  >
-                     {card}
-                  </div>
+                  <div className={style.Inner}>{card}</div>
                </div>
             ))}
          </div>

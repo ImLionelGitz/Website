@@ -4,4 +4,8 @@
     min-width: 180px;
     text-align: left;
     gap: 10px;
+
+    @media (max-width: 480px) {
+        max-width: none;
+    }
 }

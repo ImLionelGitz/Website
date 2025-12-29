@@ -8,6 +8,8 @@ import style from './page.module.scss'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { getWebData } from '@/helpers/funcs'
 import { Pages } from '@/helpers/enums'
+import Button from '@/components/universal/low_levels/Button'
+import { FaFilter } from 'react-icons/fa'
 
 type App = {
    name: string
@@ -36,6 +38,7 @@ const all = 'all'
 
 export default function Apps() {
    const [apps, setApps] = useState<App[] | null>(null)
+   const [showFilter, slideOutFilter] = useState(false)
    const [flippedElem, setFlipped] = useState('')
    const flipBack = useRef(false)
 
@@ -113,20 +116,43 @@ export default function Apps() {
          <Header imageUrl={'/test.jpg'} text="ha ha ha ha ha" />
 
          <section className={style.AppsSection}>
-            <Filter
-               filters={options}
-               curFilter={filterBy}
-               itemFilter={(category, filter) => {
-                  setFilter((prev) => {
-                     const newTable = { ...prev } as Record<string, string>
-                     newTable[category] = filter
+            {showFilter && (
+               <>
+                  <div
+                     onClick={() => slideOutFilter(false)}
+                     className={style.Backdrop}
+                  ></div>
 
-                     return newTable as Filters
-                  })
-               }}
-            />
+                  <div
+                     className={`${style.FilterDown} ${!showFilter && style.goDown}`}
+                  >
+                     <Filter
+                        filters={options}
+                        curFilter={filterBy}
+                        itemFilter={(category, filter) => {
+                           setFilter((prev) => {
+                              const newTable = { ...prev } as Record<
+                                 string,
+                                 string
+                              >
+                              newTable[category] = filter
 
-            <div style={{ width: '800px', minHeight: '420px' }}>
+                              return newTable as Filters
+                           })
+                        }}
+                     />
+                  </div>
+               </>
+            )}
+
+            <div className={style.OuterHolder}>
+               <button
+                  onClick={() => slideOutFilter(true)}
+                  className={style.FilterBtn}
+               >
+                  <FaFilter />
+               </button>
+
                <h1 className="mb-3">My Apps</h1>
 
                <div className={style.CardHolder}>

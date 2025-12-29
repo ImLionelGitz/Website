@@ -29,7 +29,7 @@ export default function Footer() {
    ]
 
    const mySite = 'https://github.com/ImLionelGitz/My-Site'
-   const date = new Date()
+   const date = new Date().getFullYear()
 
    return (
       <div className={style.reviewsBar}>
@@ -51,8 +51,7 @@ export default function Footer() {
          </div>
 
          <p>
-            © 2020 - {date.getFullYear()}. all rights reserved for logos &
-            images. <br />
+            © 2020 - {date}. all rights reserved for logos & images. <br />
             <span className="small text-capitalize">
                <em>
                   templates & designs are{' '}
