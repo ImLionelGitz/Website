@@ -47,7 +47,7 @@ export default function Portfolio() {
          <Header imageUrl="" text="" />
 
          <section id="jamal" className={style.PortfolioSection}>
-            <PortfolioFrame enabled={visible} iframeCMD={message} />
+            <PortfolioFrame enabled={message !== ''} iframeCMD={message} />
 
             <div className={`${style.Controls} ${visible && style.active}`}>
                <PortfolioBtn

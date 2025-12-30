@@ -7,6 +7,10 @@
     user-select: none;
     overflow: hidden;
 
+    @media (max-width: 480px) {
+        height: 780px;
+    }
+
     .Controls {
         position: absolute;
         transform: translateY(100%);

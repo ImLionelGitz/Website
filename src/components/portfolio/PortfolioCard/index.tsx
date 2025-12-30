@@ -43,72 +43,78 @@ export default function PortfolioCard(props: PortfolioCard) {
    }
 
    return (
-      <div
-         onClick={() => setFlip()}
-         className={`${style.PortfolioCard} ${style.flipped} ${flip ? style.active : ''}`}
-      >
-         <div className={style.PortfolioFront}>
-            <div className="d-flex justify-content-between align-items-center position-relative">
-               <h1 className={`${style.Header} ${style.highlight}`}>
-                  {guyName.replace(/_/g, ' ')}
-               </h1>
+      <div onClick={() => setFlip()} className={style.PortfolioCard}>
+         <div
+            className={`${style.MainContent} ${style.flipped} ${flip ? style.active : ''}`}
+         >
+            <div className={style.PortfolioFront}>
+               <div className="d-flex justify-content-between align-items-center position-relative">
+                  <h1 className={`${style.Header} ${style.highlight}`}>
+                     {guyName.replace(/_/g, ' ')}
+                  </h1>
 
-               {price && (
-                  <p className={`${style.Views} ${style.highlight}`}>
-                     {`${views} views`}
-                  </p>
-               )}
+                  {price && (
+                     <p className={`${style.Views} ${style.highlight}`}>
+                        {`${views} views`}
+                     </p>
+                  )}
+               </div>
+
+               <div className={style.Display}>
+                  {isVideo ? (
+                     <iframe
+                        src={`https://www.youtube.com/embed/${content}?controls=0`}
+                     ></iframe>
+                  ) : (
+                     <img src={content} alt="" className="w-100" />
+                  )}
+               </div>
+
+               <div className={style.PriceSection}>
+                  <h1
+                     style={{ marginBottom: '2px' }}
+                     className={style.highlight + (platforms ? ' mb-0' : '')}
+                  >
+                     {price ? 'Price' : 'Used'}
+                  </h1>
+
+                  {platforms && (
+                     <div className={style.Platforms}>
+                        {platforms.map((e, i) => (
+                           <DaCode key={i} codeType={e} />
+                        ))}
+
+                        {platforms.length <= 0 && assignDef(guyName)}
+                     </div>
+                  )}
+
+                  {price && (
+                     <p
+                        className={`${style.Price} ${style.highlight}`}
+                     >{`$${price}`}</p>
+                  )}
+               </div>
+
+               <div className={style.DesBox}>
+                  <h1 className={style.InnerTxt}>Remarks</h1>
+
+                  <p>{remarks}</p>
+               </div>
             </div>
 
-            <div className={style.Display}>
+            <div className={style.PortfolioBack}>
+               <img src="/silverLiger2.png" alt="" />
+
                {isVideo ? (
-                  <iframe
-                     src={`https://www.youtube.com/embed/${content}?controls=0`}
-                  ></iframe>
+                  <MdVideoLibrary
+                     style={{ filter: 'drop-shadow(black 1px 4px 2px)' }}
+                  />
                ) : (
-                  <img src={content} alt="" className="w-100" />
+                  <FaImages
+                     style={{ filter: 'drop-shadow(black 1px 4px 2px)' }}
+                  />
                )}
             </div>
-
-            <div className={style.PriceSection}>
-               <h1 className={style.highlight + (platforms && ' mb-0')}>
-                  {price ? 'Price' : 'Used'}
-               </h1>
-
-               {platforms && (
-                  <div className={style.Platforms}>
-                     {platforms.map((e, i) => (
-                        <DaCode key={i} codeType={e} />
-                     ))}
-
-                     {platforms.length <= 0 && assignDef(guyName)}
-                  </div>
-               )}
-
-               {price && (
-                  <p
-                     className={`${style.Price} ${style.highlight}`}
-                  >{`$${price}`}</p>
-               )}
-            </div>
-
-            <div className={style.DesBox}>
-               <h1 className={style.InnerTxt}>Remarks</h1>
-
-               <p>{remarks}</p>
-            </div>
-         </div>
-
-         <div className={style.PortfolioBack}>
-            <img src="/silverLiger2.png" alt="" />
-
-            {isVideo ? (
-               <MdVideoLibrary
-                  style={{ filter: 'drop-shadow(black 1px 4px 2px)' }}
-               />
-            ) : (
-               <FaImages style={{ filter: 'drop-shadow(black 1px 4px 2px)' }} />
-            )}
          </div>
       </div>
    )

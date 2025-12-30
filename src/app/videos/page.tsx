@@ -1,13 +1,12 @@
 'use client'
 
-import Filter from '@/components/universal/high_levels/Filter'
+import FilterSection from '@/components/universal/high_levels/FilterSect'
 import Footer from '@/components/universal/high_levels/Footer'
 import Header from '@/components/universal/high_levels/Header'
 import VideoCard from '@/components/videos/VideoCard'
-import style from '../apps/page.module.scss'
-import { useEffect, useMemo, useState } from 'react'
-import { getWebData } from '@/helpers/funcs'
 import { Pages } from '@/helpers/enums'
+import { getWebData } from '@/helpers/funcs'
+import { useEffect, useMemo, useState } from 'react'
 
 interface Video {
    urlID: string
@@ -81,35 +80,28 @@ export default function Videos() {
       <main>
          <Header imageUrl={'/test.jpg'} text="ha ha ha ha ha" />
 
-         <section className={style.AppsSection}>
-            <Filter
-               filters={options}
-               curFilter={filterBy}
-               itemFilter={(category, filter) => {
-                  setFilter((prev) => {
-                     const newTable = { ...prev } as Record<string, string>
-                     newTable[category] = filter
+         <FilterSection
+            title={'My Best Videos'}
+            options={options}
+            curFilt={filterBy}
+            onFilter={(category: string, filter: string) => {
+               setFilter((prev) => {
+                  const newTable = { ...prev } as Record<string, string>
+                  newTable[category] = filter
 
-                     return newTable as Filters
-                  })
-               }}
-            />
-
-            <div style={{ width: '800px', minHeight: '420px' }}>
-               <h1 className="mb-3">My Best Videos</h1>
-
-               <div className={style.CardHolder}>
-                  {filtered.map((video) => (
-                     <VideoCard
-                        key={video.urlID}
-                        videoID={video.urlID}
-                        title={video.title}
-                        uploadDate={video.uploadDate}
-                     />
-                  ))}
-               </div>
-            </div>
-         </section>
+                  return newTable as Filters
+               })
+            }}
+         >
+            {filtered.map((video) => (
+               <VideoCard
+                  key={video.urlID}
+                  videoID={video.urlID}
+                  title={video.title}
+                  uploadDate={video.uploadDate}
+               />
+            ))}
+         </FilterSection>
 
          <Footer />
       </main>

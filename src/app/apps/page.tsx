@@ -1,15 +1,12 @@
 'use client'
 
 import AppCard from '@/components/apps/AppCard'
-import Filter from '@/components/universal/high_levels/Filter'
+import FilterSection from '@/components/universal/high_levels/FilterSect'
 import Footer from '@/components/universal/high_levels/Footer'
 import Header from '@/components/universal/high_levels/Header'
-import style from './page.module.scss'
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { getWebData } from '@/helpers/funcs'
 import { Pages } from '@/helpers/enums'
-import Button from '@/components/universal/low_levels/Button'
-import { FaFilter } from 'react-icons/fa'
+import { getWebData } from '@/helpers/funcs'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 type App = {
    name: string
@@ -38,7 +35,6 @@ const all = 'all'
 
 export default function Apps() {
    const [apps, setApps] = useState<App[] | null>(null)
-   const [showFilter, slideOutFilter] = useState(false)
    const [flippedElem, setFlipped] = useState('')
    const flipBack = useRef(false)
 
@@ -115,63 +111,33 @@ export default function Apps() {
       <main onClick={resetCard}>
          <Header imageUrl={'/test.jpg'} text="ha ha ha ha ha" />
 
-         <section className={style.AppsSection}>
-            {showFilter && (
-               <>
-                  <div
-                     onClick={() => slideOutFilter(false)}
-                     className={style.Backdrop}
-                  ></div>
+         <FilterSection
+            title={'My Apps'}
+            options={options}
+            curFilt={filterBy}
+            onFilter={(category: string, filter: string) => {
+               setFilter((prev) => {
+                  const newTable = { ...prev } as Record<string, string>
+                  newTable[category] = filter
 
-                  <div
-                     className={`${style.FilterDown} ${!showFilter && style.goDown}`}
-                  >
-                     <Filter
-                        filters={options}
-                        curFilter={filterBy}
-                        itemFilter={(category, filter) => {
-                           setFilter((prev) => {
-                              const newTable = { ...prev } as Record<
-                                 string,
-                                 string
-                              >
-                              newTable[category] = filter
-
-                              return newTable as Filters
-                           })
-                        }}
-                     />
-                  </div>
-               </>
-            )}
-
-            <div className={style.OuterHolder}>
-               <button
-                  onClick={() => slideOutFilter(true)}
-                  className={style.FilterBtn}
-               >
-                  <FaFilter />
-               </button>
-
-               <h1 className="mb-3">My Apps</h1>
-
-               <div className={style.CardHolder}>
-                  {filtered.map((app) => (
-                     <AppCard
-                        key={app.name}
-                        shouldFlip={flippedElem === app.name}
-                        img={app.img}
-                        name={app.name}
-                        platforms={app.platforms}
-                        onTap={() => {
-                           flipBack.current = true
-                           setFlipped(app.name)
-                        }}
-                     />
-                  ))}
-               </div>
-            </div>
-         </section>
+                  return newTable as Filters
+               })
+            }}
+         >
+            {filtered.map((app) => (
+               <AppCard
+                  key={app.name}
+                  shouldFlip={flippedElem === app.name}
+                  img={app.img}
+                  name={app.name}
+                  platforms={app.platforms}
+                  onTap={() => {
+                     flipBack.current = true
+                     setFlipped(app.name)
+                  }}
+               />
+            ))}
+         </FilterSection>
 
          <Footer />
       </main>
