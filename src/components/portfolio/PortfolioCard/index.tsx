@@ -5,6 +5,7 @@ import { FaImages } from 'react-icons/fa'
 import style from './index.module.scss'
 import DaCode from './codesUsed'
 import { MyCodebase } from '@/helpers/enums'
+import { useEffect, useRef } from 'react'
 
 interface PortfolioCard {
    guyName: string
@@ -19,6 +20,7 @@ interface PortfolioCard {
 }
 
 export default function PortfolioCard(props: PortfolioCard) {
+   const cardRef = useRef<HTMLDivElement>(null)
    const {
       guyName,
       views,
@@ -30,6 +32,31 @@ export default function PortfolioCard(props: PortfolioCard) {
       flip,
       setFlip,
    } = props
+
+   useEffect(() => {
+      const el = cardRef.current
+      if (!el) return
+
+      if (!flip) {
+         el.style.setProperty('--tx', '0px')
+         el.style.setProperty('--ty', '0px')
+         return
+      }
+
+      const rect = el.getBoundingClientRect()
+
+      const viewportX = window.innerWidth / 2
+      const viewportY = window.innerHeight / 2
+
+      const cardX = rect.left + rect.width / 2
+      const cardY = rect.top + rect.height / 2
+
+      const dx = viewportX - cardX
+      const dy = viewportY - cardY
+
+      el.style.setProperty('--tx', `${dx}px`)
+      el.style.setProperty('--ty', `${dy}px`)
+   }, [flip])
 
    function assignDef(p: string) {
       const process = p.toUpperCase() as unknown as MyCodebase
@@ -45,6 +72,7 @@ export default function PortfolioCard(props: PortfolioCard) {
    return (
       <div onClick={() => setFlip()} className={style.PortfolioCard}>
          <div
+            ref={cardRef}
             className={`${style.MainContent} ${style.flipped} ${flip ? style.active : ''}`}
          >
             <div className={style.PortfolioFront}>

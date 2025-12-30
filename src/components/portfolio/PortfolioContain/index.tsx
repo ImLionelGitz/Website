@@ -50,7 +50,10 @@ export default function PortfolioContain({ cardData, onExit }: PFContain) {
             <IoMdCloseCircle />
          </button>
 
-         <div className={style.PortfolioContain}>
+         <div
+            style={{ overflow: curCard ? 'hidden' : 'auto' }}
+            className={style.PortfolioContain}
+         >
             {cards.map((card, i) => (
                <PortfolioCard
                   key={i}
