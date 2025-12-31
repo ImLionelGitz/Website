@@ -12,17 +12,11 @@ import Header from '@/components/universal/high_levels/Header'
 import { useEffect, useState } from 'react'
 import { getWebData } from '@/helpers/funcs'
 import { Pages } from '@/helpers/enums'
+import { useView } from '@/helpers/useView'
 
 interface Home {
    reviews: review[]
    news: news[]
-}
-
-type review = {
-   name: string
-   comments: string
-   pfp: string
-   ratings: number
 }
 
 type news = {
@@ -35,6 +29,8 @@ type news = {
 
 export default function Home() {
    const [pageData, setData] = useState<Home | null>(null)
+   const [worksRef, workVisible] = useView()
+   const [newsRef, newsVisible] = useView()
 
    useEffect(() => {
       async function fetchData() {
@@ -50,7 +46,10 @@ export default function Home() {
          <Header imageUrl="/castle.png" text="lololololol" />
 
          <section className={style.WorksSection}>
-            <div className={style.Text}>
+            <div
+               ref={worksRef}
+               className={`${style.Text} not-loaded ${workVisible ? 'loaded' : ''}`}
+            >
                <h1>Our</h1>
                <h2>Works</h2>
 
@@ -81,7 +80,10 @@ export default function Home() {
             </CardStack>
          </section>
 
-         <section className={style.NewsSection}>
+         <section
+            ref={newsRef}
+            className={`${style.NewsSection} not-loaded ${newsVisible ? 'loaded' : ''}`}
+         >
             <h1 className="mb-3">Announcements</h1>
 
             <div className={style.NewsCards}>

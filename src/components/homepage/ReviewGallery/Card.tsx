@@ -1,7 +1,7 @@
+import LazyImage from '@/components/universal/low_levels/LazyImage'
 import { Star } from 'lucide-react'
-import style from './index.module.scss'
 import { FaQuoteLeft } from 'react-icons/fa'
-import Image from 'next/image'
+import style from './index.module.scss'
 
 interface Card {
    title: string
@@ -15,13 +15,15 @@ export default function Card({ title, content, stars, image }: Card) {
 
    return (
       <div className={style.card}>
-         <Image
-            src={image}
-            alt="Icon"
-            width={88}
-            height={88}
-            className="rounded-circle mb-2"
-         />
+         <div style={{ width: '70px', height: '70px' }}>
+            <LazyImage
+               src={image}
+               alt="Icon"
+               width={88}
+               height={88}
+               className="rounded-circle mb-2"
+            />
+         </div>
 
          <FaQuoteLeft className={style.Quote} />
 

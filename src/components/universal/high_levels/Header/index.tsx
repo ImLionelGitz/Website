@@ -4,18 +4,17 @@ import NavBar from './NavBar'
 
 interface DaHeader {
    imageUrl: string
-   text: string
 }
 
 export default function Header(props: DaHeader) {
-   const { imageUrl, text } = props
+   const { imageUrl } = props
 
    return (
       <section style={{ overflowX: 'clip', position: 'relative', zIndex: '9' }}>
          <HomeBar />
 
          <div style={{ height: '40vw' }}>
-            <Banner image={imageUrl} content={text} />
+            <Banner image={imageUrl} />
          </div>
 
          <NavBar />

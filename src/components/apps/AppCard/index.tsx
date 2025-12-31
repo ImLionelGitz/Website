@@ -3,6 +3,8 @@
 import { Card, CardImg, CardImgOverlay } from 'react-bootstrap'
 import style from './index.module.scss'
 import { Platforms } from '@/helpers/enums'
+import { useState } from 'react'
+import { useView } from '@/helpers/useView'
 
 interface AppCard {
    shouldFlip: boolean
@@ -14,9 +16,20 @@ interface AppCard {
 
 export default function AppCard(props: AppCard) {
    const { shouldFlip, img, name, platforms, onTap } = props
+   const [reveal, setShow] = useState(false)
+   const [daCard, isVisible] = useView()
+
+   function onLoad() {
+      setTimeout(() => {
+         setShow(true)
+      }, Math.random() * 1000)
+   }
 
    return (
-      <div className={style.AppCard}>
+      <div
+         ref={daCard}
+         className={`${style.AppCard} not-loaded ${reveal && isVisible ? 'loaded' : ''}`}
+      >
          <Card
             onClick={onTap}
             style={{ cursor: shouldFlip ? 'auto' : 'pointer' }}
@@ -29,7 +42,8 @@ export default function AppCard(props: AppCard) {
             <div className={style.CardInner}>
                <div className={style.CardImage}>
                   <img className={style.BG} src={img} alt="" />
-                  <CardImg className={style.Icon} src={img} />
+
+                  <CardImg onLoad={onLoad} className={style.Icon} src={img} />
                </div>
 
                <CardImgOverlay className={style.CardInfo}>

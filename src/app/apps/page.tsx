@@ -109,7 +109,7 @@ export default function Apps() {
 
    return (
       <main onClick={resetCard}>
-         <Header imageUrl={'/test.jpg'} text="ha ha ha ha ha" />
+         <Header imageUrl={'/test.jpg'} />
 
          <FilterSection
             title={'My Apps'}

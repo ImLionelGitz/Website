@@ -3,7 +3,7 @@
 import Button from '@/components/universal/low_levels/Button'
 import style from './index.module.scss'
 import DropDown from '@/components/universal/low_levels/Dropdown'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaEnvelope } from 'react-icons/fa'
 
 export default function ContactForm() {
@@ -14,17 +14,15 @@ export default function ContactForm() {
       message: '',
    })
    const [status, setStatus] = useState('')
+   const [reveal, setShow] = useState(false)
 
-   const handleChange = (e) => {
-      setForm({ ...form, [e.target.name]: e.target.value })
-   }
+   // const handleChange = (_) => {
+   //    setForm({ ...form, [e.target.name]: e.target.value })
+   // }
 
-   const options = [
-      { value: 'starwars', label: 'Star Wars' },
-      { value: 'marvel', label: 'Marvel' },
-      { value: 'dc', label: 'DC' },
-      { value: 'lotr', label: 'Lord of the Rings' },
-   ]
+   useEffect(() => {
+      setTimeout(() => setShow(true), 350)
+   }, [])
 
    // const handleSubmit = async (e) => {
    //     e.preventDefault();
@@ -45,7 +43,9 @@ export default function ContactForm() {
    // };
 
    return (
-      <div className={style.ContactBlock}>
+      <div
+         className={`${style.ContactBlock} not-loaded ${reveal ? 'loaded' : ''}`}
+      >
          <div className={style.ContactForm}>
             <h1 className="fw-bold mb-3">Contact Me</h1>
 
@@ -54,7 +54,7 @@ export default function ContactForm() {
                   name="name"
                   placeholder="Your Name"
                   value={form.name}
-                  onChange={handleChange}
+                  //onChange={handleChange}
                   required
                />
 
@@ -72,7 +72,7 @@ export default function ContactForm() {
                   name="discord"
                   placeholder="Your Discord Username"
                   value={form.email}
-                  onChange={handleChange}
+                  //onChange={handleChange}
                   required
                />
 
@@ -80,7 +80,7 @@ export default function ContactForm() {
                   name="message"
                   placeholder="Your Message"
                   value={form.message}
-                  onChange={handleChange}
+                  //onChange={handleChange}
                   required
                />
 

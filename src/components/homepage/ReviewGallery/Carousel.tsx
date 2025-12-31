@@ -1,5 +1,6 @@
 'use client'
 
+import { useView } from '@/helpers/useView'
 import { Children, ReactNode, useState } from 'react'
 import { TiChevronLeftOutline, TiChevronRightOutline } from 'react-icons/ti'
 import style from './index.module.scss'
@@ -10,11 +11,15 @@ interface Carousel {
 
 export default function Carousel({ children }: Carousel) {
    const [active, setActive] = useState(0)
+   const [revsRef, revsVisible] = useView()
    const count = Children.count(children)
    const MAX_VISIBILITY = 3
 
    return (
-      <div className={style.carousel}>
+      <div
+         ref={revsRef}
+         className={`${style.carousel} not-loaded ${revsVisible ? 'loaded' : ''}`}
+      >
          {/* previous button */}
 
          {active > 0 && (

@@ -27,10 +27,12 @@ export default function Portfolio() {
                break
 
             default:
-               const lol: BtnCall = JSON.parse(e.data)
+               if (typeof e.data === 'string') {
+                  const lol: BtnCall = JSON.parse(e.data)
 
-               if (lol.action === Messages.BTN_INTERACT) {
-                  setData(lol.data)
+                  if (lol.action === Messages.BTN_INTERACT) {
+                     setData(lol.data)
+                  }
                }
 
                break
@@ -44,7 +46,7 @@ export default function Portfolio() {
 
    return (
       <main>
-         <Header imageUrl="" text="" />
+         <Header imageUrl="" />
 
          <section id="jamal" className={style.PortfolioSection}>
             <PortfolioFrame enabled={message !== ''} iframeCMD={message} />
