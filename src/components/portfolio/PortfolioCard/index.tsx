@@ -5,7 +5,9 @@ import { FaImages } from 'react-icons/fa'
 import style from './index.module.scss'
 import DaCode from './codesUsed'
 import { MyCodebase } from '@/helpers/enums'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useView } from '@/helpers/useView'
+import LazyImage from '@/components/universal/low_levels/LazyImage'
 
 interface PortfolioCard {
    guyName: string
@@ -21,6 +23,7 @@ interface PortfolioCard {
 
 export default function PortfolioCard(props: PortfolioCard) {
    const cardRef = useRef<HTMLDivElement>(null)
+   const [isVisible, setVisible] = useState(false)
    const {
       guyName,
       views,
@@ -58,6 +61,10 @@ export default function PortfolioCard(props: PortfolioCard) {
       el.style.setProperty('--ty', `${dy}px`)
    }, [flip])
 
+   function onLoad() {
+      setVisible(true)
+   }
+
    function assignDef(p: string) {
       const process = p.toUpperCase() as unknown as MyCodebase
       const index = MyCodebase[process]
@@ -70,7 +77,10 @@ export default function PortfolioCard(props: PortfolioCard) {
    }
 
    return (
-      <div onClick={() => setFlip()} className={style.PortfolioCard}>
+      <div
+         onClick={() => setFlip()}
+         className={`${style.PortfolioCard} not-loaded ${isVisible ? 'loaded' : ''}`}
+      >
          <div
             ref={cardRef}
             className={`${style.MainContent} ${style.flipped} ${flip ? style.active : ''}`}
@@ -91,10 +101,11 @@ export default function PortfolioCard(props: PortfolioCard) {
                <div className={style.Display}>
                   {isVideo ? (
                      <iframe
+                        onLoad={onLoad}
                         src={`https://www.youtube.com/embed/${content}?controls=0`}
                      ></iframe>
                   ) : (
-                     <img src={content} alt="" className="w-100" />
+                     <LazyImage src={content} alt="" className="" fill />
                   )}
                </div>
 

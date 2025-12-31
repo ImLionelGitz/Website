@@ -1,6 +1,7 @@
 import { Children, ReactNode, useState } from 'react'
 import style from './index.module.scss'
 import { TiChevronLeft, TiChevronRight } from 'react-icons/ti'
+import { useView } from '@/helpers/useView'
 
 interface CardStack {
    children: ReactNode[]
@@ -12,6 +13,7 @@ function rand(max: number, min: number) {
 
 export default function CardStack({ children }: CardStack) {
    const [cardIndex, setCardIndex] = useState(0)
+   const [worksRef, workVisible] = useView()
    const maxCards = Children.count(children)
    const maxdeg = 15
 
@@ -24,7 +26,10 @@ export default function CardStack({ children }: CardStack) {
    }
 
    return (
-      <div className={style.CardScoller}>
+      <div
+         ref={worksRef}
+         className={`${style.CardScoller} not-loaded ${workVisible ? 'loaded' : ''}`}
+      >
          <div
             style={{ '--n': maxCards, '--k': cardIndex } as CSSVars}
             className={style.CardStack}

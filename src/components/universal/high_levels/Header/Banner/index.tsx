@@ -1,5 +1,10 @@
+'use client'
+
+/* eslint-disable @next/next/no-img-element */
 import Link from 'next/link'
+import { useState } from 'react'
 import style from './index.module.scss'
+import Image from 'next/image'
 
 interface Banner {
    image: string
@@ -7,6 +12,9 @@ interface Banner {
 }
 
 export default function Banner({ image, content }: Banner) {
+   const [loaded, setLoaded] = useState(false)
+   const onLoad = () => setLoaded(true)
+
    return (
       <div
          style={{ backgroundImage: `url("${image}")` }}
@@ -16,10 +24,20 @@ export default function Banner({ image, content }: Banner) {
             <img className={style.Gradient} src="/Dark.png" alt="" />
 
             <div className={style.Info}>
-               <Link href="/">
-                  <img src="/logo.webp" alt="" className="w-100" />
+               <Link
+                  href="/"
+                  className={`not-loaded ${loaded ? 'loaded' : ''}`}
+               >
+                  <Image
+                     onLoad={onLoad}
+                     src="/logo.webp"
+                     alt="Logo"
+                     fill
+                     sizes="35vw"
+                  />
                </Link>
-               <p>{content}</p>
+
+               {loaded && <p>{content}</p>}
             </div>
          </div>
       </div>

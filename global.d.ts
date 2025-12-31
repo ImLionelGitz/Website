@@ -43,3 +43,10 @@ type dropdownOption = {
    value: string
    label: string
 }
+
+type review = {
+   name: string
+   comments: string
+   pfp: string
+   ratings: number
+}
