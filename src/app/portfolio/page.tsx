@@ -8,11 +8,13 @@ import { Messages } from '@/helpers/enums'
 import { useEffect, useState } from 'react'
 import style from './page.module.scss'
 import PortfolioContain from '@/components/portfolio/PortfolioContain'
+import { useSearchParams } from 'next/navigation'
 
 export default function Portfolio() {
    const [visible, setVisible] = useState(false)
    const [message, setMessage] = useState('')
    const [iconData, setData] = useState<iconData | null>(null)
+   const params = useSearchParams()
 
    useEffect(() => {
       const onMessage = (e: MessageEvent) => {
@@ -49,7 +51,10 @@ export default function Portfolio() {
          <Header imageUrl="" />
 
          <section id="jamal" className={style.PortfolioSection}>
-            <PortfolioFrame enabled={message !== ''} iframeCMD={message} />
+            <PortfolioFrame
+               enabled={message !== '' || params.has('page')}
+               iframeCMD={message}
+            />
 
             <div className={`${style.Controls} ${visible && style.active}`}>
                <PortfolioBtn

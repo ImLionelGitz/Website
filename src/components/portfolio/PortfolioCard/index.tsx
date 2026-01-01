@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { MyCodebase } from '@/helpers/enums'
-import { useEffect, useRef, useState } from 'react'
-import { FaImages } from 'react-icons/fa'
 import { MdVideoLibrary } from 'react-icons/md'
-import DaCode from './codesUsed'
+import { FaImages } from 'react-icons/fa'
 import style from './index.module.scss'
+import DaCode from './codesUsed'
+import { MyCodebase } from '@/helpers/enums'
+import { useEffect, useRef } from 'react'
 
 interface PortfolioCard {
    guyName: string
@@ -21,7 +21,6 @@ interface PortfolioCard {
 
 export default function PortfolioCard(props: PortfolioCard) {
    const cardRef = useRef<HTMLDivElement>(null)
-   const [isVisible, setVisible] = useState(false)
    const {
       guyName,
       views,
@@ -35,8 +34,9 @@ export default function PortfolioCard(props: PortfolioCard) {
    } = props
 
    useEffect(() => {
+      const pt = document.getElementById('jamal')
       const el = cardRef.current
-      if (!el) return
+      if (!el || !pt) return
 
       if (!flip) {
          el.style.setProperty('--tx', '0px')
@@ -44,13 +44,13 @@ export default function PortfolioCard(props: PortfolioCard) {
          return
       }
 
-      const rect = el.getBoundingClientRect()
+      const childRect = el.getBoundingClientRect()
 
-      const viewportX = window.innerWidth / 2
-      const viewportY = window.innerHeight / 2
+      const viewportX = pt.clientWidth / 2
+      const viewportY = (pt.clientHeight + 66) / 2
 
-      const cardX = rect.left + rect.width / 2
-      const cardY = rect.top + rect.height / 2
+      const cardX = childRect.left + childRect.width / 2
+      const cardY = childRect.top + childRect.height / 2
 
       const dx = viewportX - cardX
       const dy = viewportY - cardY
@@ -58,12 +58,6 @@ export default function PortfolioCard(props: PortfolioCard) {
       el.style.setProperty('--tx', `${dx}px`)
       el.style.setProperty('--ty', `${dy}px`)
    }, [flip])
-
-   function onLoad() {
-      setTimeout(() => {
-         setVisible(true)
-      }, Math.random() * 1000)
-   }
 
    function assignDef(p: string) {
       const process = p.toUpperCase() as unknown as MyCodebase
@@ -77,10 +71,7 @@ export default function PortfolioCard(props: PortfolioCard) {
    }
 
    return (
-      <div
-         onClick={() => setFlip()}
-         className={`${style.PortfolioCard} not-loaded ${isVisible ? 'loaded' : ''}`}
-      >
+      <div onClick={() => setFlip()} className={style.PortfolioCard}>
          <div
             ref={cardRef}
             className={`${style.MainContent} ${style.flipped} ${flip ? style.active : ''}`}
@@ -101,11 +92,10 @@ export default function PortfolioCard(props: PortfolioCard) {
                <div className={style.Display}>
                   {isVideo ? (
                      <iframe
-                        onLoad={onLoad}
                         src={`https://www.youtube.com/embed/${content}?controls=0`}
                      ></iframe>
                   ) : (
-                     <img onLoad={onLoad} src={content} alt="" />
+                     <img src={content} alt="" className="w-100" />
                   )}
                </div>
 
