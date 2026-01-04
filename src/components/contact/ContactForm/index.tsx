@@ -3,44 +3,76 @@
 import Button from '@/components/universal/low_levels/Button'
 import style from './index.module.scss'
 import DropDown from '@/components/universal/low_levels/Dropdown'
-import { useEffect, useState } from 'react'
+import { ChangeEvent, MouseEvent, useEffect, useState } from 'react'
 import { FaEnvelope } from 'react-icons/fa'
+import { Botghost } from '@/helpers/enums'
+
+type MergedElem = HTMLInputElement & HTMLTextAreaElement
 
 export default function ContactForm() {
-   const [form, setForm] = useState({
+   const [form, setForm] = useState<contactData>({
       name: '',
-      type: '',
-      email: '',
+      category: '',
+      discord: '',
       message: '',
    })
    const [status, setStatus] = useState('')
    const [reveal, setShow] = useState(false)
 
-   // const handleChange = (_) => {
-   //    setForm({ ...form, [e.target.name]: e.target.value })
-   // }
+   const category: dropdownOption[] = [
+      {
+         label: 'Goku',
+         value: 'goku',
+      },
+
+      {
+         label: 'Raditz',
+         value: 'raditz',
+      },
+   ]
+
+   const handleChange = (e: ChangeEvent<MergedElem>) => {
+      setForm({ ...form, [e.target.name]: e.target.value })
+   }
 
    useEffect(() => {
       setTimeout(() => setShow(true), 350)
    }, [])
 
-   // const handleSubmit = async (e) => {
-   //     e.preventDefault();
-   //     setStatus('Sending...');
+   const handleSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault()
+      setStatus('Sending...')
 
-   //     const res = await fetch('/api/contact', {
-   //         method: 'POST',
-   //         headers: { 'Content-Type': 'application/json' },
-   //         body: JSON.stringify(form),
-   //     });
+      const { name, category, discord } = form
 
-   //     if (res.ok) {
-   //         setStatus('Message sent!');
-   //         setForm({ name: '', email: '', message: '' });
-   //     } else {
-   //         setStatus('Failed to send message.');
-   //     }
-   // };
+      if (!name || !category || !discord) {
+         setStatus('Complete the form!')
+         return
+      }
+
+      try {
+         const res = await fetch('https://corsproxy.io/?url=' + Botghost.URL, {
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json',
+               Authorization: Botghost.KEY,
+            },
+            body: JSON.stringify(form),
+         })
+
+         if (res.ok) {
+            setStatus('Message sent!')
+            setForm({
+               name: '',
+               discord: '',
+               message: '',
+               category: '',
+            })
+         }
+      } catch (err) {
+         setStatus(`Failed to send message. \n ${err}`)
+      }
+   }
 
    return (
       <div
@@ -54,25 +86,25 @@ export default function ContactForm() {
                   name="name"
                   placeholder="Your Name"
                   value={form.name}
-                  //onChange={handleChange}
+                  onChange={handleChange}
                   required
                />
 
                <DropDown
-                  label={''}
-                  options={[]}
-                  display={''}
+                  options={category}
+                  display={form.category}
                   color="black"
-                  onChange={function (option: string): void {
-                     throw new Error('Function not implemented.')
+                  noAll
+                  onChange={(option) => {
+                     setForm({ ...form, category: option })
                   }}
                />
 
                <input
                   name="discord"
                   placeholder="Your Discord Username"
-                  value={form.email}
-                  //onChange={handleChange}
+                  value={form.discord}
+                  onChange={handleChange}
                   required
                />
 
@@ -80,12 +112,12 @@ export default function ContactForm() {
                   name="message"
                   placeholder="Your Message"
                   value={form.message}
-                  //onChange={handleChange}
+                  onChange={handleChange}
                   required
                />
 
                <div>
-                  <Button text="Send" />
+                  <Button text="Send" onClick={handleSubmit} />
                </div>
 
                <p>{status}</p>

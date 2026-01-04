@@ -50,3 +50,10 @@ type review = {
    pfp: string
    ratings: number
 }
+
+type contactData = {
+   name: string
+   discord: string
+   category: string
+   message: string
+}

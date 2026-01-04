@@ -5,7 +5,7 @@ import Header from '@/components/universal/high_levels/Header'
 export default function Contact() {
    return (
       <main>
-         <Header imageUrl="/Contact.jpeg" text={''} />
+         <Header imageUrl="/Contact.jpeg" />
 
          <ContactForm />
 

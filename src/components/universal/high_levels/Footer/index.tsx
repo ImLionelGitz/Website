@@ -28,7 +28,6 @@ export default function Footer() {
       'https://www.roblox.com/groups/4708773/Liger',
    ]
 
-   const mySite = 'https://github.com/ImLionelGitz/My-Site'
    const date = new Date().getFullYear()
 
    return (
@@ -50,18 +49,7 @@ export default function Footer() {
             })}
          </div>
 
-         <p>
-            © 2020 - {date}. all rights reserved for logos & images. <br />
-            <span className="small text-capitalize">
-               <em>
-                  templates & designs are{' '}
-                  <a target="_blank" href={mySite}>
-                     open source
-                  </a>
-                  .
-               </em>
-            </span>
-         </p>
+         <p>© 2020 - {date}. all rights reserved.</p>
       </div>
    )
 }

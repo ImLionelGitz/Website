@@ -18,6 +18,11 @@ export enum Pages {
    VIDEOS = 'videos',
 }
 
+export enum Botghost {
+   URL = 'https://api.botghost.com/webhook/1456828680557822206/3xzxg3oyyty3kmbx89ugb',
+   KEY = 'daa671347fba170414b0ad30eda1e970fa8fb1feb22f867613860f6d283c6797',
+}
+
 export enum MyParams {
    MEDIA,
    CODES,

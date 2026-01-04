@@ -1,10 +1,11 @@
 import Link from 'next/link'
 import styles from './index.module.scss'
+import { MouseEvent } from 'react'
 
 interface Button {
    text: string
    href?: string
-   onClick?: () => void
+   onClick?: (e: MouseEvent<HTMLButtonElement>) => void
 }
 
 export default function Button({ text, href, onClick }: Button) {

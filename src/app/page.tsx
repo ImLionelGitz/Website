@@ -43,7 +43,7 @@ export default function Home() {
 
    return (
       <main>
-         <Header imageUrl="/castle.png" text="lololololol" />
+         <Header imageUrl="/castle.png" />
 
          <section className={style.WorksSection}>
             <div
